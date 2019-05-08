@@ -15,7 +15,7 @@
     <result column="collage" jdbcType="VARCHAR" property="collage" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="highest_education" jdbcType="VARCHAR" property="highestEducation" />
-    <result column="birtuday" jdbcType="TIMESTAMP" property="birtuday" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     <result column="portray_path" jdbcType="LONGVARCHAR" property="portrayPath" />

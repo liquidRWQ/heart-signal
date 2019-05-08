@@ -1,20 +1,26 @@
-package com.company.heartbeatsignal.entity;
+package com.company.heartbeatsignal.dto.entity;
 
+import com.company.heartbeatsignal.dto.Convertible;
+import com.company.heartbeatsignal.entity.UserBaseInfo;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Liquid
- * @version 1.0
+ * @类名： UserBaseInfoDTO
+ * @描述：
  * @date 2019/5/8
  */
 @Data
-@Table(name = "user_base_info")
-public class UserBaseInfo implements Serializable {
-    private static final long serialVersionUID = -4791947128472726037L;
+public class UserBaseInfoDTO implements Serializable {
+    private static final long serialVersionUID = -6054347142096242568L;
     /**
      * 用户信息id
      */
@@ -78,19 +84,16 @@ public class UserBaseInfo implements Serializable {
     /**
      * 创建时间
      */
-    @Column(name = "created_time")
     private Date createdTime;
 
     /**
      * 最后修改时间
      */
-    @Column(name = "last_update_time")
     private Date lastUpdateTime;
 
     /**
      * 用户写真图片路径，用逗号隔开
      */
-    @Column(name = "portray_path")
     private String portrayPath;
 
     /**
@@ -106,19 +109,47 @@ public class UserBaseInfo implements Serializable {
     /**
      * 用户的感情观
      */
-    @Column(name = "emotional_view")
     private String emotionalView;
 
     /**
      * 用户的好友印象
      */
-    @Column(name = "friend_impression")
     private String friendImpression;
 
     /**
      * 用户心仪对象的描述
      */
-    @Column(name = "love_her")
     private String loveHer;
 
+    private static UserBaseInfoConvert userBaseInfoConvert;
+
+    static {
+        userBaseInfoConvert = new UserBaseInfoConvert();
+    }
+
+    public UserBaseInfo convertToUser() {
+
+        return userBaseInfoConvert.convertToDO(this);
+    }
+
+    public UserBaseInfoDTO convertToUserDTO(UserBaseInfo userBaseInfo) {
+        return userBaseInfoConvert.convertToDTO(userBaseInfo);
+    }
+
+    public static class UserBaseInfoConvert implements Convertible<UserBaseInfo, UserBaseInfoDTO> {
+
+        @Override
+        public UserBaseInfo convertToDO(UserBaseInfoDTO userBaseInfoDTO) {
+            UserBaseInfo userBaseInfo = new UserBaseInfo();
+            BeanUtils.copyProperties(userBaseInfoDTO, userBaseInfo);
+            return userBaseInfo;
+        }
+
+        @Override
+        public UserBaseInfoDTO convertToDTO(UserBaseInfo userBaseInfo) {
+            UserBaseInfoDTO userBaseInfoDTO = new UserBaseInfoDTO();
+            BeanUtils.copyProperties(userBaseInfo, userBaseInfoDTO);
+            return userBaseInfoDTO;
+        }
+    }
 }

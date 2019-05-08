@@ -1,5 +1,6 @@
 package com.company.heartbeatsignal.service.impl;
 
+import com.company.heartbeatsignal.dto.entity.UserDTO;
 import com.company.heartbeatsignal.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +12,8 @@ import org.springframework.stereotype.Service;
  */
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService{
+    @Override
+    public String login(UserDTO userDTO) {
+        return null;
+    }
 }
