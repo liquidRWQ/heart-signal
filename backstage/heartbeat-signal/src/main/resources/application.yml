@@ -1,0 +1,76 @@
+#配置服务器
+server:
+
+  port: 8089
+  context-path: /enter
+  tomcat:
+    uri-encoding: UTF-8
+    min-spare-threads: 20
+    max-threads: 200
+    max-connections: 5000
+  session:
+    timeout: 3600
+  max-http-header-size: 8192
+
+#配置数据库
+spring:
+ datasource:
+    username: enter_repair
+    password: 838860376abc
+    url: jdbc:database://119.23.229.117:3306/enter_repair?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+ redis:
+  host: 39.108.232.17
+  port: 6379
+  password: 838860376abc
+  timeout: 5000
+  pool:
+    max-idle: 100
+    max-wait: -1
+  database: 1
+ http:
+   encoding:
+     charset: UTF-8
+     enabled: true
+   multipart:
+     max-file-size: 10MB
+
+
+
+
+
+
+
+
+#配置文件上传
+
+#配置mybatis
+
+mybatis:
+  mapper-locations: classpath:mybatis/mappers/*.xml
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
+    map-underscore-to-camel-case: true
+    interceptors: com.github.pagehelper.PageInterceptor
+    cache-enabled: true
+
+#通用mapper
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+    - tk.mybatis.mapper.common.MyMapper
+  notEmpty: true
+  enum-as-simple-type: true
+ # catalog: repair
+  safe-delete: true
+
+
+
+#配置日志
+logging:
+  level:
+    com.enter.repair2: info
+  path: ./enter/log
+  file: enter.log
+debug: false

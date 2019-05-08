@@ -1,0 +1,122 @@
+package com.company.heartbeatsignal.util;
+
+import com.company.heartbeatsignal.exception.CheckedException;
+import com.company.heartbeatsignal.exception.UnCheckedException;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author Liquid
+ * @类名： HttpRequestUtils
+ * @描述：
+ * @date 2019/4/13
+ */
+public class HttpRequestUtils {
+
+    private static HttpClientBuilder httpClientBuilder;
+
+    private static RequestConfig requestConfig;
+
+    private static ThreadLocal<StringBuilder> stringBuilderThreadLocal = ThreadLocal.withInitial(StringBuilder::new);
+
+    private static Charset charset = Charset.forName("UTF-8");
+
+    static {
+        requestConfig = RequestConfig.custom().setConnectTimeout(1000).setConnectionRequestTimeout(1000).setSocketTimeout(10000).build();
+        PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager();
+        poolingHttpClientConnectionManager.setMaxTotal(100);
+        poolingHttpClientConnectionManager.setDefaultMaxPerRoute(10);
+        httpClientBuilder = HttpClients.custom().setConnectionManager(poolingHttpClientConnectionManager);
+    }
+
+    public static String sendGet(String url, Map<String, String> map) throws CheckedException {
+        String newUrl = url;
+        CloseableHttpClient httpClient = httpClientBuilder.build();
+        if (map != null) {
+            StringBuilder stringBuilder = stringBuilderThreadLocal.get();
+            stringBuilder.append(url).append("?");
+            for (Map.Entry<String, String> stringStringEntry : map.entrySet()) {
+                stringBuilder.append(stringStringEntry.getKey())
+                        .append("=")
+                        .append(stringStringEntry.getValue())
+                        .append("&");
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            newUrl = stringBuilder.toString();
+        }
+        HttpGet httpGet = new HttpGet(newUrl);
+        httpGet.setConfig(requestConfig);
+
+        return getResponse(httpClient, httpGet);
+    }
+
+    public static String sendPost(String url) throws CheckedException {
+        CloseableHttpClient httpClient = httpClientBuilder.build();
+        HttpPost httpPost = new HttpPost(url);
+        return getResponse(httpClient, httpPost);
+    }
+
+    public static String sendPost(String url, Map<String, String> map) throws CheckedException {
+        CloseableHttpClient httpClient = httpClientBuilder.build();
+        HttpPost httpPost = new HttpPost(url);
+        List<NameValuePair> params = new ArrayList<>();
+        for (Map.Entry<String, String> stringStringEntry : map.entrySet()) {
+            params.add(new BasicNameValuePair(stringStringEntry.getKey(), stringStringEntry.getValue()));
+        }
+        httpPost.setEntity(new UrlEncodedFormEntity(params, charset));
+        return getResponse(httpClient, httpPost);
+    }
+
+    public static String sendPostJson(String url, String jsonParams) throws CheckedException {
+        CloseableHttpClient httpClient = httpClientBuilder.build();
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.setEntity(new StringEntity(jsonParams, charset));
+        return getResponse(httpClient, httpPost);
+    }
+
+    private static String getResponse(CloseableHttpClient httpClient, HttpRequestBase httpRequestBase) throws CheckedException {
+        CloseableHttpResponse httpResponse = null;
+        String result = "";
+        try {
+            httpResponse = httpClient.execute(httpRequestBase);
+            if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                throw new UnCheckedException("发送Http请求状态码异常:" + (httpResponse.getStatusLine().getStatusCode()));
+            }
+            result = EntityUtils.toString(httpResponse.getEntity(), charset);
+
+        } catch (IOException e) {
+            throw new CheckedException("发送Http请求异常:" + e.toString());
+        } finally {
+
+            try {
+                if (httpResponse != null) {
+                    httpResponse.close();
+                }
+            } catch (IOException e) {
+                throw new CheckedException("response资源关闭异常:" + e.toString());
+            }
+
+        }
+        return result;
+    }
+
+}
