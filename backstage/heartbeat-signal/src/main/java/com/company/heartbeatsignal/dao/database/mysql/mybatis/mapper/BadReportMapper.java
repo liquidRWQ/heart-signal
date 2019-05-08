@@ -1,6 +1,6 @@
 package com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper;
 
-import com.company.heartbeatsignal.entity.User;
+import com.company.heartbeatsignal.entity.BadReport;
 import org.apache.ibatis.annotations.CacheNamespace;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
@@ -13,7 +13,6 @@ import tk.mybatis.mapper.common.Mapper;
 
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository("userMapper")
-public interface UserMapper extends Mapper<User> {
-
+@Repository("badReportMapper")
+public interface BadReportMapper extends Mapper<BadReport> {
 }

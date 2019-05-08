@@ -1,5 +1,6 @@
 package com.company.heartbeatsignal.service.impl;
 
+import com.company.heartbeatsignal.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,6 +9,6 @@ import org.springframework.stereotype.Service;
  * @描述：
  * @date 2019/4/18
  */
-@Service("userService")
-public class UserServiceImpl {
+@Service("userServiceImpl")
+public class UserServiceImpl implements UserService{
 }

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-public class RepairAppConfig {
+public class HeartAppConfig {
 
     public static final String GRANT_TYPE = "client_credential";
 

@@ -7,43 +7,35 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @className User
- * @auther Liquid
- * @description
- * @date 2018/11/21
+ * @author Liquid
+ * @version 1.0
+ * @date 2019/5/8
  */
 @Data
-@Table(name = "repair_user")
+@Table(name = "user")
 public class User implements Serializable {
-    private static final long serialVersionUID = -1683183409242638787L;
+    private static final long serialVersionUID = 657116227594683330L;
     /**
-     * 用户id
+     * id
      */
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private String userId;
+    private Integer id;
 
     /**
-     * 微信userOpenid
+     * 用户微信openid
      */
     @Column(name = "user_openid")
     private String userOpenid;
 
     /**
-     * 用户会话钥匙
-     */
-    @Column(name = "user_session_key")
-    private String userSessionKey;
-
-    /**
-     * 用户头像
+     * 用户头像url
      */
     @Column(name = "user_avatar_url")
     private String userAvatarUrl;
 
     /**
-     * 微信呢称
+     * 用户微信昵称
      */
     @Column(name = "user_nickname")
     private String userNickname;
@@ -55,13 +47,25 @@ public class User implements Serializable {
     private String userCity;
 
     /**
-     * 创建时间
+     * 用户手机号
      */
-    @Column(name = "create_time")
-    private Date createTime;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     /**
-     * 最后更新时间
+     * 身份证号码
+     */
+    @Column(name = "id_card_number")
+    private String idCardNumber;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "created_time")
+    private Date createdTime;
+
+    /**
+     * 最后修改时间
      */
     @Column(name = "last_update_time")
     private Date lastUpdateTime;

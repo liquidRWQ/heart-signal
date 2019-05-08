@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.UserBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.heartbeatsignal.entity.UserBaseInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="gender" jdbcType="SMALLINT" property="gender" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <result column="collage" jdbcType="VARCHAR" property="collage" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="highest_education" jdbcType="VARCHAR" property="highestEducation" />
+    <result column="birtuday" jdbcType="TIMESTAMP" property="birtuday" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="portray_path" jdbcType="LONGVARCHAR" property="portrayPath" />
+    <result column="about" jdbcType="LONGVARCHAR" property="about" />
+    <result column="hobby" jdbcType="LONGVARCHAR" property="hobby" />
+    <result column="emotional_view" jdbcType="LONGVARCHAR" property="emotionalView" />
+    <result column="friend_impression" jdbcType="LONGVARCHAR" property="friendImpression" />
+    <result column="love_her" jdbcType="LONGVARCHAR" property="loveHer" />
+  </resultMap>
+</mapper>
