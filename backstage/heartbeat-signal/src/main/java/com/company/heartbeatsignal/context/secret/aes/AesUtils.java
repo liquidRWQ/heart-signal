@@ -20,15 +20,15 @@ public class AesUtils {
     /**
      * 默认加密类型
      */
-    private static final String DEFAULT_AES_TYPE = "AES/CBC/PKCS5Padding";
+    public static final String DEFAULT_AES_TYPE = "AES/CBC/PKCS5Padding";
     /**
      * 默认加密类型
      */
-    private static final String WE_CHAT_AES_TYPE = "AES/CBC/PKCS7Padding";
+    public static final String WE_CHAT_AES_TYPE = "AES/CBC/PKCS7Padding";
     /**
      * 默认加密类型
      */
-    private static final String NO_AES_TYPE = "AES/CBC/NoPadding";
+    public static final String NO_AES_TYPE = "AES/CBC/NoPadding";
     /**
      * 加密方式
      */

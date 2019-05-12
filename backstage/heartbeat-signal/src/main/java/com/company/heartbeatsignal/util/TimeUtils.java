@@ -33,6 +33,17 @@ public class TimeUtils {
 
     /**
      * @param
+     * @return Date当前日期
+     * @描述： 获取当前格式化后的的时间
+     * @author Liquid
+     * @date 2018/12/26
+     */
+    public static long getCurrentTimeMills() {
+        return Calendar.getInstance().getTimeInMillis();
+    }
+
+    /**
+     * @param
      * @return java.lang.String 时间的字符串
      * @throws null
      * @author Liquid

@@ -1,5 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
+import com.company.heartbeatsignal.service.BadReportService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,4 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/badReport")
 @RestController
 public class BadReportController {
+
+    @Autowired
+    private BadReportService badReportService;
 }

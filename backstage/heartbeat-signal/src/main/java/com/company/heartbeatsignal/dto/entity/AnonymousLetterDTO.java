@@ -1,6 +1,9 @@
 package com.company.heartbeatsignal.dto.entity;
 
+import com.company.heartbeatsignal.dto.Convertible;
+import com.company.heartbeatsignal.entity.AnonymousLetter;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 
@@ -33,5 +36,36 @@ public class AnonymousLetterDTO implements Serializable {
      * 匿名信内容
      */
     private String info;
+
+    private static AnonymousLetterConvert anonymousLetterConvert;
+
+    static {
+        anonymousLetterConvert = new AnonymousLetterConvert();
+    }
+
+    public AnonymousLetter convertToAnonymousLetter() {
+        return anonymousLetterConvert.convertToDO(this);
+    }
+
+    public AnonymousLetterDTO convertToAnonymousLetterDTO(AnonymousLetter anonymousLetter) {
+        return anonymousLetterConvert.convertToDTO(anonymousLetter);
+    }
+
+    public static class AnonymousLetterConvert implements Convertible<AnonymousLetter, AnonymousLetterDTO> {
+
+        @Override
+        public AnonymousLetter convertToDO(AnonymousLetterDTO anonymousLetterDTO) {
+            AnonymousLetter anonymousLetter = new AnonymousLetter();
+            BeanUtils.copyProperties(anonymousLetterDTO, anonymousLetter);
+            return anonymousLetter;
+        }
+
+        @Override
+        public AnonymousLetterDTO convertToDTO(AnonymousLetter anonymousLetter) {
+            AnonymousLetterDTO anonymousLetterDTO = new AnonymousLetterDTO();
+            BeanUtils.copyProperties(anonymousLetter, anonymousLetterDTO);
+            return anonymousLetterDTO;
+        }
+    }
 
 }

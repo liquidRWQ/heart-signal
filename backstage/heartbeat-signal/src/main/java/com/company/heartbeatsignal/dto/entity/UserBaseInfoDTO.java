@@ -127,12 +127,11 @@ public class UserBaseInfoDTO implements Serializable {
         userBaseInfoConvert = new UserBaseInfoConvert();
     }
 
-    public UserBaseInfo convertToUser() {
-
+    public UserBaseInfo convertToUserBaseInfo() {
         return userBaseInfoConvert.convertToDO(this);
     }
 
-    public UserBaseInfoDTO convertToUserDTO(UserBaseInfo userBaseInfo) {
+    public UserBaseInfoDTO convertToUserBaseInfoDTO(UserBaseInfo userBaseInfo) {
         return userBaseInfoConvert.convertToDTO(userBaseInfo);
     }
 

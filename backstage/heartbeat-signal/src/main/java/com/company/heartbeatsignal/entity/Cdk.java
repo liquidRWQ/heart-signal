@@ -1,5 +1,6 @@
 package com.company.heartbeatsignal.entity;
 
+import com.company.heartbeatsignal.util.TimeUtils;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "cdk")
-public class Cdk implements Serializable {
+public class Cdk implements Serializable,TimeSet {
     private static final long serialVersionUID = -4417301447381358639L;
     /**
      * id
@@ -51,4 +52,15 @@ public class Cdk implements Serializable {
     @Column(name = "last_update_time")
     private Date lastUpdateTime;
 
+    @Override
+    public void setAllTime() {
+        Date currentTime = TimeUtils.getCurrentTime();
+        this.setCreatedTime(currentTime);
+        this.setLastUpdateTime(currentTime);
+    }
+
+    @Override
+    public void refreshLastUpdateTime() {
+        this.setLastUpdateTime(TimeUtils.getCurrentTime());
+    }
 }

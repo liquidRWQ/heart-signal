@@ -48,7 +48,25 @@ public class HttpRequestUtils {
         httpClientBuilder = HttpClients.custom().setConnectionManager(poolingHttpClientConnectionManager);
     }
 
-    public static String sendGet(String url, Map<String, String> map) throws CheckedException {
+    public static String sendGetWithStringParams(String url, String params) throws CheckedException {
+
+        CloseableHttpClient httpClient = httpClientBuilder.build();
+        HttpGet httpGet = new HttpGet(url + "?" + params);
+        httpGet.setConfig(requestConfig);
+        return getResponse(httpClient, httpGet);
+    }
+
+    public static String sendGetWithStringParams(String url, String params, Map<String, String> headers) throws CheckedException {
+
+        CloseableHttpClient httpClient = httpClientBuilder.build();
+        HttpGet httpGet = new HttpGet(url + "?" + params);
+        String key = headers.keySet().iterator().next();
+        httpGet.setHeader(key, headers.get(key));
+        httpGet.setConfig(requestConfig);
+        return getResponse(httpClient, httpGet);
+    }
+
+    public static String sendGetWithParams(String url, Map<String, String> map) throws CheckedException {
         String newUrl = url;
         CloseableHttpClient httpClient = httpClientBuilder.build();
         if (map != null) {

@@ -1,5 +1,6 @@
 package com.company.heartbeatsignal.entity;
 
+import com.company.heartbeatsignal.util.TimeUtils;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "bad_report")
-public class BadReport implements Serializable{
+public class BadReport implements Serializable,TimeSet{
     private static final long serialVersionUID = 2111760490255225847L;
     /**
      * 举报id
@@ -58,4 +59,15 @@ public class BadReport implements Serializable{
     @Column(name = "report_info")
     private String reportInfo;
 
+    @Override
+    public void setAllTime() {
+        Date currentTime = TimeUtils.getCurrentTime();
+        this.setCreatedTime(currentTime);
+        this.setLastUpdateTime(currentTime);
+    }
+
+    @Override
+    public void refreshLastUpdateTime() {
+        this.setLastUpdateTime(TimeUtils.getCurrentTime());
+    }
 }

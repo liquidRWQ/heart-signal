@@ -8,6 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_openid" jdbcType="VARCHAR" property="userOpenid" />
     <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
     <result column="user_city" jdbcType="VARCHAR" property="userCity" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
@@ -15,4 +16,10 @@
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
+
+
+  <select id="selectUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT user_id FROM repair_user WHERE user_openid= #{userOpenid,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

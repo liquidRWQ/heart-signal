@@ -3,6 +3,7 @@ package com.company.heartbeatsignal.dto.entity;
 import com.company.heartbeatsignal.dto.Convertible;
 import com.company.heartbeatsignal.entity.User;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
@@ -17,6 +18,30 @@ import java.io.Serializable;
 public class UserDTO implements Serializable {
     private static final long serialVersionUID = 6542778703832168720L;
     private Integer id;
+
+    /**
+     * key
+     */
+    @NotBlank
+    String sessionKey;
+
+    /**
+     * 用户私密数据
+     */
+    @NotBlank
+    String encryptedData;
+
+    /**
+     * 秘钥向量
+     */
+    @NotBlank
+    String iv;
+
+    /**
+     * 微信小程序的用户code
+     */
+    @NotBlank
+    String code;
 
     /**
      * 用户微信openid
@@ -47,6 +72,11 @@ public class UserDTO implements Serializable {
      * 身份证号码
      */
     private String idCardNumber;
+
+    /**
+     * 用户真实姓名
+     */
+    private String realName;
 
     private static UserConvert userConvert;
 

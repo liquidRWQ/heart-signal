@@ -13,7 +13,8 @@ import tk.mybatis.mapper.common.Mapper;
 
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository("userMapper")
+@Repository()
 public interface UserMapper extends Mapper<User> {
 
+    Integer selectUserId(String userOpenid);
 }
