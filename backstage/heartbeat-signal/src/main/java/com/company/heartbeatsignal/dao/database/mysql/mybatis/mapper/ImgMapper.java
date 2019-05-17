@@ -13,6 +13,6 @@ import tk.mybatis.mapper.common.Mapper;
 
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository("imgMapper")
+@Repository
 public interface ImgMapper extends Mapper<Img> {
 }

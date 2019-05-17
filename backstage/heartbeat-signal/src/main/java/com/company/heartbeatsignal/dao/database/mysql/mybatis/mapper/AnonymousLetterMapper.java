@@ -16,6 +16,6 @@ import tk.mybatis.mapper.common.Mapper;
  */
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository("anonymousLetterMapper")
+@Repository()
 public interface AnonymousLetterMapper extends Mapper<AnonymousLetter> {
 }

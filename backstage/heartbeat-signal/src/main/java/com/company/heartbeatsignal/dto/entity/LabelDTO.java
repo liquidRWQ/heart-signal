@@ -18,6 +18,11 @@ public class LabelDTO implements Serializable {
     private static final long serialVersionUID = 9149817509823712096L;
 
     /**
+     * formId
+     */
+    private String formId;
+
+    /**
      * id
      */
     private Integer id;

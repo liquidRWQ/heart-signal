@@ -10,9 +10,6 @@ import lombok.Data;
  */
 @Data
 public class BaseTemplateDTO {
-    String url;
-
-    String formId;
 
     String params;
 

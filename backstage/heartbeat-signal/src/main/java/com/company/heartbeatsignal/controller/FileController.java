@@ -2,13 +2,14 @@ package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.FileService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 
 /**
  * @author Liquid
@@ -51,5 +52,18 @@ public class FileController {
         String serverPath = null;
         return new ResultBean<String>(serverPath);
 
+    }
+
+    @GetMapping("/{foldname}/{filename:.+}")
+    public ResponseEntity<?> getFile(@PathVariable String foldname, @PathVariable String filename, HttpServletRequest httpServletRequest) {
+
+        String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/")+"files/"+foldname+"/"+filename;
+        File file=new File(realPath);
+        try {
+            return ResponseEntity.ok(FileUtils.readFileToByteArray(file));
+        } catch (Exception e) {
+            //404
+            return ResponseEntity.notFound().build();
+        }
     }
 }

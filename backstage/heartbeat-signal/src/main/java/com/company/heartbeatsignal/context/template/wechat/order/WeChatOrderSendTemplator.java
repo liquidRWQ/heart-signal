@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @描述：
  * @date 2019/4/16
  */
-@Component("WeChatOrderSend")
+@Component("weChatOrderSend")
 public class WeChatOrderSendTemplator extends BaseWeChatSendTemplator{
 
     public WeChatOrderSendTemplator() {

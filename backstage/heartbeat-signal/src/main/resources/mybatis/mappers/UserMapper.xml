@@ -19,7 +19,13 @@
 
 
   <select id="selectUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
-    SELECT user_id FROM repair_user WHERE user_openid= #{userOpenid,jdbcType=VARCHAR}
+    SELECT id FROM user WHERE user_openid= #{userOpenid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKeyList" resultMap="BaseResultMap">
+      select id,user_openid,user_avatar_url,real_name,user_nickname,user_city,phone_number,id_card_number,created_time,last_update_time from user where id in
+      <foreach collection="ids" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
   </select>
 
 </mapper>

@@ -9,6 +9,9 @@ import com.company.heartbeatsignal.util.CodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Liquid
  * @类名： UserServiceImpl
@@ -20,7 +23,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-
 
     @Override
     public int login(UserDTO userDTO) throws CheckedException {
@@ -42,4 +44,47 @@ public class UserServiceImpl implements UserService {
         userMapper.updateByPrimaryKeySelective(userDTO.convertToUser());
     }
 
+    @Override
+    public List<UserDTO> selectByUserIdList(UserDTO userDTO) {
+        List<User> users = userMapper.selectByPrimaryKeyList(userDTO.getIds());
+        ArrayList<UserDTO> userDTOS = new ArrayList<>();
+        for (User user : users) {
+            userDTOS.add(new UserDTO().convertToUserDTO(user));
+        }
+        return userDTOS;
+    }
+
+    @Override
+    public void insert(UserDTO userDTO) {
+        User user = userDTO.convertToUser();
+        user.setAllTime();
+        userMapper.insert(user);
+    }
+
+    @Override
+    public List<UserDTO> selectAll() {
+        List<User> users = userMapper.selectAll();
+        ArrayList<UserDTO> userDTOS = new ArrayList<>();
+        for (User user : users) {
+            userDTOS.add(new UserDTO().convertToUserDTO(user));
+        }
+        return userDTOS;
+    }
+
+    @Override
+    public UserDTO selectByPrimary(UserDTO userDTO) {
+        return new UserDTO().convertToUserDTO(userMapper.selectByPrimaryKey(userDTO.getId()));
+    }
+
+    @Override
+    public void updateByPrimary(UserDTO userDTO) {
+        User user = userDTO.convertToUser();
+        user.refreshLastUpdateTime();
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public void deleteByPrimary(UserDTO userDTO) {
+        userMapper.deleteByPrimaryKey(userDTO.getId());
+    }
 }

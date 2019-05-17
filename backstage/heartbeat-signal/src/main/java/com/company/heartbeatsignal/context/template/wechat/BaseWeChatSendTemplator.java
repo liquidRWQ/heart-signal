@@ -17,6 +17,8 @@ public class BaseWeChatSendTemplator implements SendTemplator {
 
     private static final String CORRECT_CODE = "0";
 
+    private static final String WE_APP_URL = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=";
+
     protected  BaseWeChatSendTemplator() {
 
     }
@@ -24,11 +26,10 @@ public class BaseWeChatSendTemplator implements SendTemplator {
     @Override
     public void sendTemplate(BaseTemplateDTO baseTemplateDTO) throws CheckedException {
         String params = baseTemplateDTO.getParams();
-        String url = baseTemplateDTO.getUrl();
-        String result = HttpRequestUtils.sendPostJson(url, params);
+        String result = HttpRequestUtils.sendPostJson(WE_APP_URL, params);
         String errcode = JsonUtils.toJSONObject(result).get("errcode").toString();
         if (!BaseWeChatSendTemplator.CORRECT_CODE.equals(errcode)) {
-            throw new UnCheckedException("发送模板通知失败--调用对象的类：" + this.getClass() + "错误信息：" +
+            throw new UnCheckedException("发送微信模板通知失败--调用对象的类：" + this.getClass() + "错误信息：" +
                     JsonUtils.toJSONObject(result).get("errcode").toString());
         }
     }

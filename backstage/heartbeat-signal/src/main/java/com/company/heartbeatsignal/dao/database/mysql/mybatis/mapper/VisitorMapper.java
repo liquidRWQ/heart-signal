@@ -13,6 +13,6 @@ import tk.mybatis.mapper.common.Mapper;
 
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository("visitorMapper")
+@Repository()
 public interface VisitorMapper extends Mapper<Visitor> {
 }

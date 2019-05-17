@@ -17,6 +17,12 @@ import java.io.Serializable;
 @Data
 public class AttentionDTO implements Serializable {
     private static final long serialVersionUID = 9132201952870298347L;
+
+    /**
+     * formId
+     */
+    private String formId;
+
     /**
      * id
      */
@@ -39,11 +45,11 @@ public class AttentionDTO implements Serializable {
         attentionConvert = new AttentionConvert();
     }
 
-    public Attention convertToAttentionLetter() {
+    public Attention convertToAttention() {
         return attentionConvert.convertToDO(this);
     }
 
-    public AttentionDTO convertToAttentionLetterDTO(Attention attention) {
+    public AttentionDTO convertToAttentionDTO(Attention attention) {
         return attentionConvert.convertToDTO(attention);
     }
 

@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Liquid
@@ -17,7 +18,16 @@ import java.io.Serializable;
 @Data
 public class UserDTO implements Serializable {
     private static final long serialVersionUID = 6542778703832168720L;
+
+    /**
+     * id
+     */
     private Integer id;
+
+    /**
+     * ids
+     */
+    private List<Integer> ids;
 
     /**
      * key

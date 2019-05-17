@@ -1,9 +1,11 @@
 package com.company.heartbeatsignal.controller;
 
+import com.company.heartbeatsignal.controller.infc.Cruder;
+import com.company.heartbeatsignal.dto.entity.BadReportDTO;
+import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.BadReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Liquid
@@ -13,8 +15,42 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping("/badReport")
 @RestController
-public class BadReportController {
+public class BadReportController implements Cruder<BadReportDTO>{
 
     @Autowired
     private BadReportService badReportService;
+
+    @GetMapping("/getBadReport")
+    @Override
+    public ResultBean getOne(BadReportDTO badReportDTO) {
+        return new ResultBean<>(badReportService.selectByPrimary(badReportDTO));
+    }
+
+
+    @GetMapping("/getBadReports")
+    @Override
+    public ResultBean getAll() {
+        return new ResultBean<>(badReportService.selectAll());
+    }
+
+    @PostMapping("/addBadReport")
+    @Override
+    public ResultBean addOne(BadReportDTO badReportDTO) throws Exception {
+        badReportService.insert(badReportDTO);
+        return new ResultBean<>();
+    }
+
+    @PutMapping("/updateBadReport")
+    @Override
+    public ResultBean updateOne(BadReportDTO badReportDTO) {
+        badReportService.updateByPrimary(badReportDTO);
+        return new ResultBean<>();
+    }
+
+    @DeleteMapping("/deleteBadReport")
+    @Override
+    public ResultBean deleteOne(BadReportDTO badReportDTO) {
+        badReportService.deleteByPrimary(badReportDTO);
+        return new ResultBean<>();
+    }
 }

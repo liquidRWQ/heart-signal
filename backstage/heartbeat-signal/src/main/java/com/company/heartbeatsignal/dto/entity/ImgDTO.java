@@ -18,6 +18,11 @@ public class ImgDTO implements Serializable {
 
     private static final long serialVersionUID = -6505495823183073460L;
     /**
+     * formId
+     */
+    private String formId;
+
+    /**
      * 图片id
      */
     private Integer id;

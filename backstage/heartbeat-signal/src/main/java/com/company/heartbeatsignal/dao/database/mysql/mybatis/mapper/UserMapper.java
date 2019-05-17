@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.CacheNamespace;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.List;
+
 /**
  * @author Liquid
  * @version 1.0
@@ -13,8 +15,10 @@ import tk.mybatis.mapper.common.Mapper;
 
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository()
+@Repository
 public interface UserMapper extends Mapper<User> {
 
     Integer selectUserId(String userOpenid);
+
+    List<User> selectByPrimaryKeyList(List<Integer> ids);
 }

@@ -1,6 +1,7 @@
 package com.company.heartbeatsignal.service;
 
 import com.company.heartbeatsignal.dto.entity.UserBaseInfoDTO;
+import com.company.heartbeatsignal.service.infc.Cruder;
 
 /**
  * @author Liquid
@@ -8,11 +9,7 @@ import com.company.heartbeatsignal.dto.entity.UserBaseInfoDTO;
  * @描述：
  * @date 2019/5/8
  */
-public interface UserBaseInfoService {
+public interface UserBaseInfoService extends Cruder<UserBaseInfoDTO>{
 
-    void  addUserBaseInfo(UserBaseInfoDTO userBaseInfoDTO);
-
-    void  updateUserBaseInfo(UserBaseInfoDTO userBaseInfoDTO);
-
-    UserBaseInfoDTO getOneUserBaseInfo(UserBaseInfoDTO userBaseInfoDTO);
+    UserBaseInfoDTO selectByUserId(UserBaseInfoDTO userBaseInfoDTO);
 }

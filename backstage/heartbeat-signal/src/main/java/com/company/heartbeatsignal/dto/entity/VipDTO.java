@@ -19,6 +19,11 @@ public class VipDTO implements Serializable {
     private static final long serialVersionUID = -650133911980800812L;
 
     /**
+     * formId
+     */
+    private String formId;
+
+    /**
      * id
      */
     private Integer id;

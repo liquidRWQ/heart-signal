@@ -16,6 +16,12 @@ import java.io.Serializable;
 @Data
 public class BadReportDTO implements Serializable {
     private static final long serialVersionUID = -8266832502047842209L;
+
+    /**
+     * formId
+     */
+    private String formId;
+
     /**
      * 举报id
      */

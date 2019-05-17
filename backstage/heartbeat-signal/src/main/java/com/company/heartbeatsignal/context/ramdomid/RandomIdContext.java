@@ -17,7 +17,7 @@ public class RandomIdContext {
     private static final Map<String,StringRandomizer> stringRandomizerMap=new ConcurrentHashMap<>(16);
 
 
-    public String getRondomId(String beanName) {
+    public String getRandomId(String beanName) {
         return stringRandomizerMap.get(beanName).getRandom();
     }
 }

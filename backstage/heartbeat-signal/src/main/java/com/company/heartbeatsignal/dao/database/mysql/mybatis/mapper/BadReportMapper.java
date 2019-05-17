@@ -13,6 +13,6 @@ import tk.mybatis.mapper.common.Mapper;
 
 @CacheNamespace
 @org.apache.ibatis.annotations.Mapper
-@Repository("badReportMapper")
+@Repository()
 public interface BadReportMapper extends Mapper<BadReport> {
 }

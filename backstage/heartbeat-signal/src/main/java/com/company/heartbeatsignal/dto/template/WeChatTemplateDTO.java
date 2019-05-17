@@ -12,5 +12,5 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class WeChatTemplateDTO extends BaseTemplateDTO{
-    String egg;
+
 }

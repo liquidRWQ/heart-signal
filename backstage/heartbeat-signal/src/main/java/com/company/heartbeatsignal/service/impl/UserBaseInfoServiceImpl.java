@@ -7,6 +7,9 @@ import com.company.heartbeatsignal.service.UserBaseInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Liquid
  * @类名： UserBaseInfoServiceImpl
@@ -20,7 +23,7 @@ public class UserBaseInfoServiceImpl implements UserBaseInfoService {
     private UserBaseInfoMapper userBaseInfoMapper;
 
     @Override
-    public void addUserBaseInfo(UserBaseInfoDTO userBaseInfoDTO) {
+    public void insert(UserBaseInfoDTO userBaseInfoDTO) {
         UserBaseInfo userBaseInfo = userBaseInfoDTO.convertToUserBaseInfo();
         userBaseInfo.setAllTime();
         userBaseInfoMapper.insert(userBaseInfo);
@@ -28,14 +31,34 @@ public class UserBaseInfoServiceImpl implements UserBaseInfoService {
     }
 
     @Override
-    public void updateUserBaseInfo(UserBaseInfoDTO userBaseInfoDTO) {
+    public List<UserBaseInfoDTO> selectAll() {
+        List<UserBaseInfo> userBaseInfos = userBaseInfoMapper.selectAll();
+        ArrayList<UserBaseInfoDTO> userBaseInfoDTOS = new ArrayList<>();
+        for (UserBaseInfo userBaseInfo : userBaseInfos) {
+            userBaseInfoDTOS.add(new UserBaseInfoDTO().convertToUserBaseInfoDTO(userBaseInfo));
+        }
+        return userBaseInfoDTOS;
+    }
+
+    @Override
+    public void updateByPrimary(UserBaseInfoDTO userBaseInfoDTO) {
         UserBaseInfo userBaseInfo = userBaseInfoDTO.convertToUserBaseInfo();
         userBaseInfo.refreshLastUpdateTime();
         userBaseInfoMapper.updateByPrimaryKeySelective(userBaseInfo);
     }
 
     @Override
-    public UserBaseInfoDTO getOneUserBaseInfo(UserBaseInfoDTO userBaseInfoDTO) {
+    public void deleteByPrimary(UserBaseInfoDTO userBaseInfoDTO) {
+        userBaseInfoMapper.deleteByPrimaryKey(userBaseInfoDTO.getId());
+    }
+
+    @Override
+    public UserBaseInfoDTO selectByPrimary(UserBaseInfoDTO userBaseInfoDTO) {
         return userBaseInfoDTO.convertToUserBaseInfoDTO(userBaseInfoMapper.selectOne(userBaseInfoDTO.convertToUserBaseInfo()));
+    }
+
+    @Override
+    public UserBaseInfoDTO selectByUserId(UserBaseInfoDTO userBaseInfoDTO) {
+        return new UserBaseInfoDTO().convertToUserBaseInfoDTO(userBaseInfoMapper.selectOne(userBaseInfoDTO.convertToUserBaseInfo()));
     }
 }

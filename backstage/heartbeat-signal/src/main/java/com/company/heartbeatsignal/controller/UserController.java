@@ -1,5 +1,6 @@
 package com.company.heartbeatsignal.controller;
 
+import com.company.heartbeatsignal.controller.infc.Cruder;
 import com.company.heartbeatsignal.dto.entity.UserDTO;
 import com.company.heartbeatsignal.dto.other.PhoneCodeDTO;
 import com.company.heartbeatsignal.result.ResultBean;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/user")
 @RestController
-public class UserController {
+public class UserController implements Cruder<UserDTO> {
     @Autowired
     private UserService userService;
 
@@ -43,7 +44,43 @@ public class UserController {
 
     @PostMapping("/idCardVerified")
     public ResultBean idCardVerified(UserDTO userDTO) throws Exception {
-
         return new ResultBean<>();
     }
+
+    @GetMapping("/getUsersByUserIdList")
+    public ResultBean getUsersByUserIdList(UserDTO userDTO) throws Exception {
+        return new ResultBean<>(userService.selectByUserIdList(userDTO));
+    }
+
+    @GetMapping("/getUser")
+    @Override
+    public ResultBean getOne(UserDTO userDTO) {
+        return new ResultBean<>(userService.selectByPrimary(userDTO));
+    }
+
+    @GetMapping("/getUsers")
+    @Override
+    public ResultBean getAll() {
+        return new ResultBean<>(userService.selectAll());
+    }
+
+    @Override
+    public ResultBean addOne(UserDTO userDTO) throws Exception {
+        userService.insert(userDTO);
+        return new ResultBean<>();
+    }
+
+    @PutMapping("/updateUser")
+    @Override
+    public ResultBean updateOne(UserDTO userDTO) {
+        userService.updateByPrimary(userDTO);
+        return new ResultBean<>();
+    }
+
+    @Override
+    public ResultBean deleteOne(UserDTO userDTO) {
+        userService.deleteByPrimary(userDTO);
+        return new ResultBean<>();
+    }
+
 }

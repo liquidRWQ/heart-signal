@@ -2,6 +2,9 @@ package com.company.heartbeatsignal.service;
 
 import com.company.heartbeatsignal.dto.entity.UserDTO;
 import com.company.heartbeatsignal.exception.CheckedException;
+import com.company.heartbeatsignal.service.infc.Cruder;
+
+import java.util.List;
 
 /**
  * @author Liquid
@@ -9,8 +12,10 @@ import com.company.heartbeatsignal.exception.CheckedException;
  * @描述：
  * @date 2019/4/18
  */
-public interface UserService {
+public interface UserService extends Cruder<UserDTO> {
     int login(UserDTO userDTO) throws CheckedException;
 
     void setPhoneNumber(UserDTO userDTO);
+
+    List<UserDTO> selectByUserIdList(UserDTO userDTO);
 }
