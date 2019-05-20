@@ -2,6 +2,7 @@ package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.controller.infc.Cruder;
 import com.company.heartbeatsignal.dto.entity.UserDTO;
+import com.company.heartbeatsignal.dto.other.PageDTO;
 import com.company.heartbeatsignal.dto.other.PhoneCodeDTO;
 import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.UserService;
@@ -30,15 +31,15 @@ public class UserController implements Cruder<UserDTO> {
         return new ResultBean<Integer>(userId);
     }
 
-    @GetMapping("/setCode")
-    public ResultBean setCode(PhoneCodeDTO phoneCodeDTO) throws Exception {
+    @GetMapping("/sendCode")
+    public ResultBean sendCode(PhoneCodeDTO phoneCodeDTO) throws Exception {
         PhoneCodeUtils.sendCode(phoneCodeDTO);
         return new ResultBean<PhoneCodeDTO>(phoneCodeDTO);
     }
 
-    @PostMapping("/setPhoneNumber")
-    public ResultBean setPhoneNumber(UserDTO userDTO) throws Exception {
-        userService.setPhoneNumber(userDTO);
+    @PostMapping("/addPhoneNumber")
+    public ResultBean setPhoneNumber(UserDTO userDTO,PhoneCodeDTO phoneCodeDTO) throws Exception {
+        userService.setPhoneNumber(userDTO,phoneCodeDTO);
         return new ResultBean<>();
     }
 
@@ -81,6 +82,11 @@ public class UserController implements Cruder<UserDTO> {
     public ResultBean deleteOne(UserDTO userDTO) {
         userService.deleteByPrimary(userDTO);
         return new ResultBean<>();
+    }
+
+    @GetMapping("/getUsersInIndex")
+    public ResultBean getUsersInIndex(PageDTO pageDTO) {
+        return new ResultBean<>(userService.selectInIndex(pageDTO));
     }
 
 }

@@ -6,6 +6,9 @@ import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.BadReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Liquid
@@ -51,6 +54,14 @@ public class BadReportController implements Cruder<BadReportDTO>{
     @Override
     public ResultBean deleteOne(BadReportDTO badReportDTO) {
         badReportService.deleteByPrimary(badReportDTO);
+        return new ResultBean<>();
+    }
+
+    @PostMapping("/setBadReport")
+    public ResultBean setBadReport(BadReportDTO badReportDTO, @RequestParam("files") MultipartFile[] files , HttpServletRequest httpServletRequest) throws Exception {
+
+        String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        badReportService.insertBadReportDTO(badReportDTO, realPath, files);
         return new ResultBean<>();
     }
 }

@@ -30,7 +30,7 @@ public class UserPhotoController implements Cruder<UserPhotoDTO>{
         return new ResultBean<>();
     }
 
-    @PostMapping("/getUserPhotos")
+    @PostMapping("/getUserPhotosByUserId")
     public ResultBean getUserPhotos(UserPhotoDTO userPhotoDTO) {
         userPhotoService.getUserPhoto(userPhotoDTO);
         return new ResultBean<>();

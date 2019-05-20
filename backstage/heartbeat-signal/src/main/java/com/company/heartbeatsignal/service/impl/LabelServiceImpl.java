@@ -61,4 +61,14 @@ public class LabelServiceImpl implements LabelService {
     public void updateLabelStatus(LabelDTO labelDTO) {
 
     }
+
+    @Override
+    public List<LabelDTO> selectLabelsByUserId(LabelDTO labelDTO) {
+        List<Label> labels = labelMapper.select(labelDTO.convertToUserBaseInfo());
+        ArrayList<LabelDTO> labelDTOS = new ArrayList<>();
+        for (Label label : labels) {
+            labelDTOS.add(new LabelDTO().convertToUserBaseInfoDTO(label));
+        }
+        return labelDTOS;
+    }
 }

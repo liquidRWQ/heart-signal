@@ -34,16 +34,12 @@ public class UserBaseInfo implements Serializable,TimeSet {
      */
     private Short gender;
 
-    /**
-     * 用户头像
-     */
-    @Column(name = "img_path")
-    private String imgPath;
+
 
     /**
      * 用户昵称
      */
-    private String nickname;
+    private String realName;
 
     /**
      * 用户年龄
@@ -88,11 +84,6 @@ public class UserBaseInfo implements Serializable,TimeSet {
     @Column(name = "last_update_time")
     private Date lastUpdateTime;
 
-    /**
-     * 用户写真图片路径，用逗号隔开
-     */
-    @Column(name = "portray_path")
-    private String portrayPath;
 
     /**
      * 用户对自己的描述

@@ -8,8 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="gender" jdbcType="SMALLINT" property="gender" />
-    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
-    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="height" jdbcType="DOUBLE" property="height" />
     <result column="collage" jdbcType="VARCHAR" property="collage" />
@@ -18,7 +17,6 @@
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="portray_path" jdbcType="LONGVARCHAR" property="portrayPath" />
     <result column="about" jdbcType="LONGVARCHAR" property="about" />
     <result column="hobby" jdbcType="LONGVARCHAR" property="hobby" />
     <result column="emotional_view" jdbcType="LONGVARCHAR" property="emotionalView" />

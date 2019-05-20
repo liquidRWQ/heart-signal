@@ -30,6 +30,12 @@ public class User implements Serializable,TimeSet{
     private String userOpenid;
 
     /**
+     * 微信公众号用户openid
+     */
+    @Column(name = "public_user_openid")
+    private String publicUserOpenid;
+
+    /**
      * 用户头像url
      */
     @Column(name = "user_avatar_url")

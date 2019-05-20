@@ -20,13 +20,13 @@ public class AnonymousLetterController implements Cruder<AnonymousLetterDTO> {
     @Autowired
     private AnonymousLetterService anonymousLetterService;
 
-    @GetMapping("getAnonymousLetter")
+    @GetMapping("/getAnonymousLetter")
     @Override
     public ResultBean getOne(AnonymousLetterDTO anonymousLetterDTO) {
         return new ResultBean<>(anonymousLetterService.selectByPrimary(anonymousLetterDTO));
     }
 
-    @GetMapping("getAnonymousLetters")
+    @GetMapping("/getAnonymousLetters")
     @Override
     public ResultBean getAll() {
         return new ResultBean<>(anonymousLetterService.selectAll());

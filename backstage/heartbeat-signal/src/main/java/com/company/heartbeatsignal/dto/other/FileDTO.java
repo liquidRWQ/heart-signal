@@ -11,11 +11,14 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Data
 public class FileDTO {
+
     String realPath;
 
     MultipartFile multipartFile;
 
     String folderName;
+
+    String secondFolderName;
 
     String fileName;
 

@@ -39,16 +39,11 @@ public class UserBaseInfoDTO implements Serializable {
      */
     private Short gender;
 
-    /**
-     * 用户头像
-     */
-    @Column(name = "img_path")
-    private String imgPath;
 
     /**
-     * 用户昵称
+     * 用户姓名
      */
-    private String nickname;
+    private String realName;
 
     /**
      * 用户年龄
@@ -91,10 +86,7 @@ public class UserBaseInfoDTO implements Serializable {
      */
     private Date lastUpdateTime;
 
-    /**
-     * 用户写真图片路径，用逗号隔开
-     */
-    private String portrayPath;
+
 
     /**
      * 用户对自己的描述

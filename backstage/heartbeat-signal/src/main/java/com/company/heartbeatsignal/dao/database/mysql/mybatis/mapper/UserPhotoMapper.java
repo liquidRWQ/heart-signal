@@ -15,4 +15,6 @@ import tk.mybatis.mapper.common.Mapper;
 @org.apache.ibatis.annotations.Mapper
 @Repository
 public interface UserPhotoMapper extends Mapper<UserPhoto> {
+
+    String selectFirstUserPhoto(String id);
 }

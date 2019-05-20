@@ -34,6 +34,7 @@ public class UserPhotoServiceImpl implements UserPhotoService {
         filesDTO.setFolderName(FOLDER_NAME);
         filesDTO.setMultipartFiles(files);
         filesDTO.setRealPath(realPath);
+        filesDTO.setSecondFolderName("user_" + userPhotoDTO.getUserId());
         FileUpLoadUtils.setFilesToServer(filesDTO);
         List<String> paths = filesDTO.getPaths();
         List<String> fileNames = filesDTO.getFileNames();
@@ -88,6 +89,5 @@ public class UserPhotoServiceImpl implements UserPhotoService {
     public void updateByPrimary(UserPhotoDTO userPhotoDTO) {
 
     }
-
 
 }

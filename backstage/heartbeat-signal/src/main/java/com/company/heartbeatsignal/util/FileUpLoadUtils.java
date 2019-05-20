@@ -56,6 +56,7 @@ public class FileUpLoadUtils {
         FileDTO fileDTO = new FileDTO();
         fileDTO.setRealPath(filesDTO.getRealPath());
         fileDTO.setFolderName(filesDTO.getFolderName());
+        fileDTO.setSecondFolderName(filesDTO.getSecondFolderName());
         for (MultipartFile multipartFile : multipartFiles) {
             fileDTO.setMultipartFile(multipartFile);
             fileDTO.setFileName(IdUtils.getUUID());
@@ -71,6 +72,7 @@ public class FileUpLoadUtils {
 
     private static void down(FileDTO fileDTO, StringBuilder stringBuilder) {
         String folderName = fileDTO.getFolderName();
+        String secondFolderName = fileDTO.getSecondFolderName();
         String realPath = fileDTO.getRealPath();
         MultipartFile multipartFile = fileDTO.getMultipartFile();
         String trueFileName = fileDTO.getFileName();
@@ -79,7 +81,13 @@ public class FileUpLoadUtils {
         if (FileType.IMAGE.value().contains(fileType)) {
             // 自定义的文件名称
             // 设置存放文件的路径
-            String path = stringBuilder.append(realPath).append("files/").append(folderName).toString();
+            String path;
+            if (secondFolderName != null) {
+                path = stringBuilder.append(realPath).append("files/").append(folderName).append("/").append(secondFolderName).toString();
+            } else {
+                path = stringBuilder.append(realPath).append("files/").append(folderName).toString();
+            }
+
             File serverFile = new File(path);
             if (!serverFile.exists()) {
                 if (!serverFile.mkdirs()) {
@@ -98,14 +106,13 @@ public class FileUpLoadUtils {
         }
     }
 
-    public static void  deleteFile(FileDTO fileDTO){
+    public static void deleteFile(FileDTO fileDTO) {
         File file = new File(fileDTO.getRealPath());
-        if (file.exists()){
-            if (!file.delete()){
+        if (file.exists()) {
+            if (!file.delete()) {
                 throw new UnCheckedException("文件删除失败");
             }
         }
     }
-
 
 }

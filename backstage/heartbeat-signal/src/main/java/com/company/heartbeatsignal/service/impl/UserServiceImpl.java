@@ -2,10 +2,16 @@ package com.company.heartbeatsignal.service.impl;
 
 import com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.UserMapper;
 import com.company.heartbeatsignal.dto.entity.UserDTO;
+import com.company.heartbeatsignal.dto.other.PageDTO;
+import com.company.heartbeatsignal.dto.other.PhoneCodeDTO;
 import com.company.heartbeatsignal.entity.User;
 import com.company.heartbeatsignal.exception.CheckedException;
+import com.company.heartbeatsignal.exception.UserException;
 import com.company.heartbeatsignal.service.UserService;
 import com.company.heartbeatsignal.util.CodeUtils;
+import com.company.heartbeatsignal.util.TimeUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,18 +46,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void setPhoneNumber(UserDTO userDTO) {
-        userMapper.updateByPrimaryKeySelective(userDTO.convertToUser());
+    public void setPhoneNumber(UserDTO userDTO, PhoneCodeDTO phoneCodeDTO) {
+        if (TimeUtils.getCurrentTimeMills() > phoneCodeDTO.getTimeStamp() + (long) (300 * 1000)) {
+            throw new UserException("验证码过期");
+        } else {
+            userMapper.updateByPrimaryKeySelective(userDTO.convertToUser());
+        }
     }
 
     @Override
     public List<UserDTO> selectByUserIdList(UserDTO userDTO) {
-        List<User> users = userMapper.selectByPrimaryKeyList(userDTO.getIds());
+        List<User> users = userMapper.setByPrimaryKeyList(userDTO.getIds());
         ArrayList<UserDTO> userDTOS = new ArrayList<>();
         for (User user : users) {
             userDTOS.add(new UserDTO().convertToUserDTO(user));
         }
         return userDTOS;
+    }
+
+    @Override
+    public PageInfo selectInIndex(PageDTO pageDTO) {
+        PageHelper.startPage(pageDTO.getPageNumber(), pageDTO.getPageSize());
+        List<UserDTO> users = userMapper.selectInIndex("1");
+        return new PageInfo<UserDTO>(users);
     }
 
     @Override

@@ -12,4 +12,9 @@
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
+
+
+  <select id="selectFirstUserPhoto" resultType="String">
+    SELECT photo_name FROM user_photo WHERE user_id=#{} LIMIT 1
+  </select>
 </mapper>

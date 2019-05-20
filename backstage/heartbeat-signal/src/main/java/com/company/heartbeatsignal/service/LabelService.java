@@ -3,6 +3,8 @@ package com.company.heartbeatsignal.service;
 import com.company.heartbeatsignal.dto.entity.LabelDTO;
 import com.company.heartbeatsignal.service.infc.Cruder;
 
+import java.util.List;
+
 /**
  * @author Liquid
  * @类名： LabelService
@@ -12,4 +14,6 @@ import com.company.heartbeatsignal.service.infc.Cruder;
 public interface LabelService extends Cruder<LabelDTO>{
 
     void updateLabelStatus(LabelDTO labelDTO);
+
+    List<LabelDTO> selectLabelsByUserId(LabelDTO labelDTO);
 }

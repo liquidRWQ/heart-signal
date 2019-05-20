@@ -55,13 +55,13 @@ public class AttentionController implements Cruder<AttentionDTO>{
     }
 
 
-    @GetMapping("/getAttentionByUserId")
-    public ResultBean getAttentionByUserId(AttentionDTO attentionDTO) {
+    @GetMapping("/getUsersByUserId")
+    public ResultBean getUsersByUserId(AttentionDTO attentionDTO) {
         return new ResultBean<>(attentionService.selectByUserId(attentionDTO));
     }
 
-    @GetMapping("/getAttentionByAttentionUserId")
-    public ResultBean getAttentionByAttentionUserId(AttentionDTO attentionDTO) {
+    @GetMapping("/getUsersByAttentionUserId")
+    public ResultBean getUsersByAttentionUserId(AttentionDTO attentionDTO) {
         return new ResultBean<>(attentionService.selectByAttentionUserId(attentionDTO));
     }
 }

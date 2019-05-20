@@ -19,6 +19,8 @@ public class FilesDTO {
 
     String folderName;
 
+    String secondFolderName;
+
     List<String> fileNames;
 
     List<String> paths;

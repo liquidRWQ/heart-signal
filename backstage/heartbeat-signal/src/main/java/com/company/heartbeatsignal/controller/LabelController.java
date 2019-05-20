@@ -58,4 +58,9 @@ public class LabelController implements Cruder<LabelDTO> {
         labelService.deleteByPrimary(labelDTO);
         return new ResultBean<>();
     }
+
+    @GetMapping("/getLabelsByUserId")
+    public ResultBean getLabelsByUserId(LabelDTO labelDTO) {
+        return new ResultBean<>(labelService.selectLabelsByUserId(labelDTO));
+    }
 }

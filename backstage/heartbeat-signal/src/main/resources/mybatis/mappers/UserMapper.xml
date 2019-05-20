@@ -7,6 +7,7 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_openid" jdbcType="VARCHAR" property="userOpenid" />
+    <result column="public_user_openid" jdbcType="VARCHAR" property="publicUserOpenid" />
     <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
@@ -17,15 +18,38 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
 
+  <resultMap id="DTOMap" type="com.company.heartbeatsignal.dto.entity.UserDTO">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <association property="photoName" select="com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.UserPhotoMapper.selectFirstUserPhoto" column="user_id"/>
+  </resultMap>
+
 
   <select id="selectUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT id FROM user WHERE user_openid= #{userOpenid,jdbcType=VARCHAR}
   </select>
-  <select id="selectByPrimaryKeyList" resultMap="BaseResultMap">
-      select id,user_openid,user_avatar_url,real_name,user_nickname,user_city,phone_number,id_card_number,created_time,last_update_time from user where id in
+
+  <select id="setByPrimaryKeyList" resultMap="BaseResultMap">
+      select id,user_avatar_url,real_name,user_nickname,user_city,phone_number,id_card_number,created_time,last_update_time from user where id in
       <foreach collection="ids" item="id" open="(" close=")" separator=",">
         #{id}
       </foreach>
   </select>
+
+  <select id="selectInIndex" resultMap="DTOMap">
+     select a.user_avatar_url,a.real_name,a.user_nickname,b.gender,b.age,b.height,b.real_name FROM user  as a
+          LEFT JOIN user_base_info as b ON a.id=b.user_id WHERE a.id=#{id}
+  </select>
+
+
+
 
 </mapper>
