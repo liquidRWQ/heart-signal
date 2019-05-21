@@ -17,7 +17,7 @@ spring:
  datasource:
     username: rwq
     password: 838860376abc
-    url: jdbc:database://119.23.229.117:3306/heartbeat_signal?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://119.23.229.117:3306/heartbeat_signal?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
  redis:

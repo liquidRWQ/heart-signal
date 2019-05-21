@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019/5/8
  */
 @Service("userBaseInfoServiceImpl")
-public class UserBaseInfoServiceImpl implements UserBaseInfoService {
+public class  UserBaseInfoServiceImpl implements UserBaseInfoService {
 
     @Autowired
     private UserBaseInfoMapper userBaseInfoMapper;

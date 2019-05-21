@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageInfo selectInIndex(PageDTO pageDTO) {
         PageHelper.startPage(pageDTO.getPageNumber(), pageDTO.getPageSize());
-        List<UserDTO> users = userMapper.selectInIndex("1");
+        List<UserDTO> users = userMapper.selectInIndex();
         return new PageInfo<UserDTO>(users);
     }
 

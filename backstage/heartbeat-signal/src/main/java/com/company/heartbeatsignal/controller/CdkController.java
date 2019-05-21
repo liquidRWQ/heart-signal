@@ -1,6 +1,5 @@
 package com.company.heartbeatsignal.controller;
 
-import com.company.heartbeatsignal.controller.infc.Cruder;
 import com.company.heartbeatsignal.dto.entity.CdkDTO;
 import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.CdkService;
@@ -15,41 +14,36 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("/cdk")
 @RestController
-public class CdkController implements Cruder<CdkDTO> {
+public class CdkController {
 
     @Autowired
     private CdkService cdkService;
 
 
     @GetMapping("/getCdk")
-    @Override
     public ResultBean getOne(CdkDTO cdkDTO) {
 
         return new ResultBean<>(cdkService.selectByPrimary(cdkDTO));
     }
 
     @GetMapping("/getCdks")
-    @Override
     public ResultBean getAll() {
         return new ResultBean<>(cdkService.selectAll());
     }
 
     @PostMapping("/addCdk")
-    @Override
     public ResultBean addOne(CdkDTO cdkDTO) throws Exception {
         cdkService.insert(cdkDTO);
         return new ResultBean<>();
     }
 
     @PutMapping("/updateCdk")
-    @Override
     public ResultBean updateOne(CdkDTO cdkDTO) {
         cdkService.updateByPrimary(cdkDTO);
         return new ResultBean<>();
     }
 
     @DeleteMapping("/deleteCdk")
-    @Override
     public ResultBean deleteOne(CdkDTO cdkDTO) {
         cdkService.deleteByPrimary(cdkDTO);
         return new ResultBean<>();

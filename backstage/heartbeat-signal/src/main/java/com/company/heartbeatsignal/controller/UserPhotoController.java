@@ -1,6 +1,5 @@
 package com.company.heartbeatsignal.controller;
 
-import com.company.heartbeatsignal.controller.infc.Cruder;
 import com.company.heartbeatsignal.dto.entity.UserPhotoDTO;
 import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.UserPhotoService;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RequestMapping("/userPhoto")
 @RestController
-public class UserPhotoController implements Cruder<UserPhotoDTO>{
+public class UserPhotoController {
 
     @Autowired
     private UserPhotoService userPhotoService;
@@ -36,28 +35,27 @@ public class UserPhotoController implements Cruder<UserPhotoDTO>{
         return new ResultBean<>();
     }
 
-    @Override
+
     public ResultBean getOne(UserPhotoDTO userPhotoDTO) {
         return null;
     }
 
-    @Override
+
     public ResultBean getAll() {
         return null;
     }
 
-    @Override
+
     public ResultBean addOne(UserPhotoDTO userPhotoDTO) {
         return null;
     }
 
-    @Override
+
     public ResultBean updateOne(UserPhotoDTO userPhotoDTO) {
         return null;
     }
 
     @DeleteMapping("/deleteUserPhoto")
-    @Override
     public ResultBean deleteOne(UserPhotoDTO userPhotoDTO) {
         userPhotoService.deleteByPrimary(userPhotoDTO);
         return new ResultBean<>();

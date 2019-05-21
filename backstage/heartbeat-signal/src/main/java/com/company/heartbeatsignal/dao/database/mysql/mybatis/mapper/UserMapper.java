@@ -23,5 +23,5 @@ public interface UserMapper extends Mapper<User> {
 
     List<User> setByPrimaryKeyList(List<Integer> ids);
 
-    List<UserDTO> selectInIndex(String userId);
+    List<UserDTO> selectInIndex();
 }

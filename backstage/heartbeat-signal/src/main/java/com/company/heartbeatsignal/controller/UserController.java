@@ -1,6 +1,5 @@
 package com.company.heartbeatsignal.controller;
 
-import com.company.heartbeatsignal.controller.infc.Cruder;
 import com.company.heartbeatsignal.dto.entity.UserDTO;
 import com.company.heartbeatsignal.dto.other.PageDTO;
 import com.company.heartbeatsignal.dto.other.PhoneCodeDTO;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/user")
 @RestController
-public class UserController implements Cruder<UserDTO> {
+public class UserController  {
     @Autowired
     private UserService userService;
 
@@ -54,31 +53,27 @@ public class UserController implements Cruder<UserDTO> {
     }
 
     @GetMapping("/getUser")
-    @Override
     public ResultBean getOne(UserDTO userDTO) {
         return new ResultBean<>(userService.selectByPrimary(userDTO));
     }
 
     @GetMapping("/getUsers")
-    @Override
     public ResultBean getAll() {
         return new ResultBean<>(userService.selectAll());
     }
 
-    @Override
+    @PostMapping("/addUser")
     public ResultBean addOne(UserDTO userDTO) throws Exception {
         userService.insert(userDTO);
         return new ResultBean<>();
     }
 
     @PutMapping("/updateUser")
-    @Override
     public ResultBean updateOne(UserDTO userDTO) {
         userService.updateByPrimary(userDTO);
         return new ResultBean<>();
     }
 
-    @Override
     public ResultBean deleteOne(UserDTO userDTO) {
         userService.deleteByPrimary(userDTO);
         return new ResultBean<>();

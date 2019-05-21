@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @描述：
  * @date 2019/5/20
  */
-@RequestMapping("account")
+@RequestMapping("/account")
 @RestController
 public class AccountController {
 

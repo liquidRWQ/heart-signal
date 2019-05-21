@@ -14,7 +14,7 @@
   </resultMap>
 
 
-  <select id="selectFirstUserPhoto" resultType="String">
-    SELECT photo_name FROM user_photo WHERE user_id=#{} LIMIT 1
+  <select id="selectFirstUserPhoto" resultType="java.lang.String">
+    SELECT photo_name FROM user_photo WHERE user_id=#{id} LIMIT 1
   </select>
 </mapper>

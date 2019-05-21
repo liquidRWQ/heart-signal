@@ -1,6 +1,5 @@
 package com.company.heartbeatsignal.controller;
 
-import com.company.heartbeatsignal.controller.infc.Cruder;
 import com.company.heartbeatsignal.dto.entity.AttentionDTO;
 import com.company.heartbeatsignal.result.ResultBean;
 import com.company.heartbeatsignal.service.AttentionService;
@@ -15,32 +14,28 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("/attention")
 @RestController
-public class AttentionController implements Cruder<AttentionDTO>{
+public class AttentionController{
 
     @Autowired
     private AttentionService attentionService;
 
     @GetMapping("/getAttention")
-    @Override
     public ResultBean getOne(AttentionDTO attentionDTO) {
         return new ResultBean<>(attentionService.selectByPrimary(attentionDTO));
     }
 
     @GetMapping("/getAttentions")
-    @Override
     public ResultBean getAll() {
         return new ResultBean<>(attentionService.selectAll());
     }
 
     @PostMapping("/addAttention")
-    @Override
     public ResultBean addOne(AttentionDTO attentionDTO) throws Exception {
         attentionService.insert(attentionDTO);
         return new ResultBean<>();
     }
 
     @PutMapping("/updateAttention")
-    @Override
     public ResultBean updateOne(AttentionDTO attentionDTO) {
         attentionService.updateByPrimary(attentionDTO);
         return new ResultBean<>();
@@ -48,7 +43,6 @@ public class AttentionController implements Cruder<AttentionDTO>{
 
 
     @DeleteMapping("/deleteAttention")
-    @Override
     public ResultBean deleteOne(AttentionDTO attentionDTO) {
         attentionService.deleteByPrimary(attentionDTO);
         return new ResultBean<>();

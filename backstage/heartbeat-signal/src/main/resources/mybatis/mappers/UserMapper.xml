@@ -29,7 +29,7 @@
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="height" jdbcType="DOUBLE" property="height" />
-    <association property="photoName" select="com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.UserPhotoMapper.selectFirstUserPhoto" column="user_id"/>
+    <association property="photoName" select="com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.UserPhotoMapper.selectFirstUserPhoto" column="id"/>
   </resultMap>
 
 
@@ -45,8 +45,8 @@
   </select>
 
   <select id="selectInIndex" resultMap="DTOMap">
-     select a.user_avatar_url,a.real_name,a.user_nickname,b.gender,b.age,b.height,b.real_name FROM user  as a
-          LEFT JOIN user_base_info as b ON a.id=b.user_id WHERE a.id=#{id}
+     select a.id,a.user_avatar_url,a.real_name,a.user_nickname,b.gender,b.age,b.height,b.real_name FROM user  as a
+          LEFT JOIN user_base_info as b ON a.id=b.user_id
   </select>
 
 
