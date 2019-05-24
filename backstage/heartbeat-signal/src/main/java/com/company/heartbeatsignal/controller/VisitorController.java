@@ -14,7 +14,7 @@ import java.util.List;
  * @描述：
  * @date 2019/5/8
  */
-@RequestMapping("/visitor")
+
 @RestController
 public class VisitorController  {
 

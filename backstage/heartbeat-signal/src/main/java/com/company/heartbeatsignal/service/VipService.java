@@ -1,6 +1,7 @@
 package com.company.heartbeatsignal.service;
 
 import com.company.heartbeatsignal.dto.entity.VipDTO;
+import com.company.heartbeatsignal.service.infc.CdkConvert;
 import com.company.heartbeatsignal.service.infc.Cruder;
 
 /**
@@ -9,7 +10,7 @@ import com.company.heartbeatsignal.service.infc.Cruder;
  * @描述：
  * @date 2019/5/8
  */
-public interface VipService extends Cruder<VipDTO>{
+public interface VipService extends Cruder<VipDTO>,CdkConvert<VipDTO>{
 
     VipDTO selectByUserId(VipDTO vipDTO);
 }

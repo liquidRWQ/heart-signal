@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
  * @描述：
  * @date 2019/5/8
  */
-@RequestMapping("/anonymous")
 @RestController
 public class AnonymousLetterController  {
 

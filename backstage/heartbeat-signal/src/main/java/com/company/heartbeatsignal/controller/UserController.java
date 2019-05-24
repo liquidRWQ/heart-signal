@@ -18,16 +18,14 @@ import org.springframework.web.bind.annotation.*;
  * @date 2019/4/18
  */
 
-@RequestMapping("/user")
 @RestController
 public class UserController  {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResultBean login(@Validated UserDTO userDTO, BindingResult bindingResult) throws Exception {
-        int userId = userService.login(userDTO);
-        return new ResultBean<Integer>(userId);
+        return new ResultBean<>(userService.login(userDTO));
     }
 
     @GetMapping("/sendCode")

@@ -86,10 +86,6 @@ public class PhoneCodeUtils {
         return code;
     }
 
-    public static void main(String[] args) throws CheckedException {
-        PhoneCodeDTO phoneCodeDTO = new PhoneCodeDTO();
-        phoneCodeDTO.setPhoneNumber("15768235796");
-        PhoneCodeUtils.sendCode(phoneCodeDTO);
-    }
+
 
 }

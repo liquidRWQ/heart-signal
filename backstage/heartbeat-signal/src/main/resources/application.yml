@@ -1,7 +1,7 @@
 #配置服务器
 server:
 
-  port: 8089
+  port: 8007
   context-path: /heartbeat
   tomcat:
     uri-encoding: UTF-8
@@ -10,7 +10,7 @@ server:
     max-connections: 5000
   session:
     timeout: 3600
-  max-http-header-size: 8192
+  max-http-header-size: 16384
 
 #配置数据库
 spring:

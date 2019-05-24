@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int login(UserDTO userDTO) throws CheckedException {
+    public UserDTO login(UserDTO userDTO) throws CheckedException {
         CodeUtils.getUserOpenIdByWeChatLoginDTO(userDTO);
         Integer userId = userMapper.selectUserId(userDTO.getUserOpenid());
         if (userId == null) {
@@ -40,8 +40,9 @@ public class UserServiceImpl implements UserService {
             userMapper.insert(user);
             userId = user.getId();
         }
-
-        return userId;
+        UserDTO userDTO1 = new UserDTO();
+        userDTO1.setId(userId);
+        return userDTO1;
 
     }
 

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
  * @描述：
  * @date 2019/5/8
  */
-@RequestMapping("/badReport")
 @RestController
 public class BadReportController {
 

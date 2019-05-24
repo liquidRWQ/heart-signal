@@ -63,7 +63,7 @@ public class CodeUtils {
         log.info("method:" + Thread.currentThread().getStackTrace()[1].getClassName() + "  data:" + data);
         JSONObject jsonObject = JSONObject.parseObject(data);
         if (jsonObject.get(sessionKey) == null) {
-            throw new UnCheckedException("调用微信登录接口失败");
+            throw new UnCheckedException("调用微信登录接口失败  data: "+data);
         }
         return jsonObject.get("session_key").toString();
     }

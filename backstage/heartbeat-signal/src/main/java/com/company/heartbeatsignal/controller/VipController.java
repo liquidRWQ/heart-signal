@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @描述：
  * @date 2019/5/8
  */
-@RequestMapping("/vip")
+
 @RestController
 public class VipController {
 
@@ -34,6 +34,8 @@ public class VipController {
         vipService.insert(vipDTO);
         return new ResultBean<>();
     }
+
+
 
     @PutMapping("/updateVip")
     public ResultBean updateOne(VipDTO vipDTO) {

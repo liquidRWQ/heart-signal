@@ -2,6 +2,9 @@ package com.company.heartbeatsignal.util;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -19,6 +22,31 @@ public class TimeUtils {
     public static final String YYYY = "yyyy";
     public static final String MM = "MM";
     public static final String DD = "dd";
+
+    /**
+     * @param
+     * @return
+     * @throws
+     * @author Liquid
+     * @描述：
+     * @date 2019/5/24
+     */
+    public static Date getAfterCurrentTime(int number, ChronoUnit chronoUnit) {
+        return Date.from(Instant.now().plus(number, chronoUnit));
+    }
+
+    /**
+     * @param
+     * @return
+     * @throws
+     * @author Liquid
+     * @描述：
+     * @date 2019/5/24
+     */
+    public static Date getBeforeCurrentTime(int number, TemporalUnit temporalUnit) {
+        return Date.from(Instant.now().minus(number, temporalUnit));
+    }
+
 
     /**
      * @param
@@ -113,5 +141,7 @@ public class TimeUtils {
     public static String dateFormatToStringByFormat(Date date, String pattern) {
         return DateFormatUtils.format(date, YYYY_MM_DD_HH_MM_SS);
     }
+
+
 
 }

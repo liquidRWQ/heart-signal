@@ -35,6 +35,11 @@ public class Cdk implements Serializable,TimeSet {
     private String reward;
 
     /**
+     * 兑换状态
+     */
+    private String status;
+
+    /**
      * 兑换码过期时间
      */
     @Column(name = "stop_time")

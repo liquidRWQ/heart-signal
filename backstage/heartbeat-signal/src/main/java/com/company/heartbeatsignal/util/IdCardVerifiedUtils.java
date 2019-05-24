@@ -48,8 +48,7 @@ public class IdCardVerifiedUtils {
 
     public static void main(String[] args) throws CheckedException {
         IdCardDTO idCardDTO = new IdCardDTO();
-        idCardDTO.setIdCard("350823199710096318");
-        idCardDTO.setRealName("饶旺琦");
+ 
         idCardVerified(idCardDTO);
     }
 }

@@ -60,4 +60,9 @@ public class VipServiceImpl implements VipService {
     public VipDTO selectByUserId(VipDTO vipDTO) {
         return new VipDTO().convertToVipDTO(vipMapper.selectOne(vipDTO.convertToVip()));
     }
+
+    @Override
+    public void convert(VipDTO vipDTO) {
+        insert(vipDTO);
+    }
 }

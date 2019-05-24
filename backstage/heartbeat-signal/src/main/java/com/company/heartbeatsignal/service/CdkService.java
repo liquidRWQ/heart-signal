@@ -11,5 +11,5 @@ import com.company.heartbeatsignal.service.infc.Cruder;
  */
 public interface CdkService extends Cruder<CdkDTO>{
 
-
+    void convertCdk(CdkDTO cdkDTO);
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @描述：
  * @date 2019/5/17
  */
-@RequestMapping("/vipOrder")
+
 @RestController
 public class VipOrderController  {
 

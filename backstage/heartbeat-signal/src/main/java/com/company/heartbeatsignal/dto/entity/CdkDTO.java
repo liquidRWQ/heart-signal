@@ -24,6 +24,11 @@ public class CdkDTO implements Serializable {
     private Integer id;
 
     /**
+     * userId
+     */
+    private Integer userId;
+
+    /**
      * 兑换码
      */
     private String cdk;
@@ -32,6 +37,11 @@ public class CdkDTO implements Serializable {
      * 兑换奖励
      */
     private String reward;
+
+    /**
+     * 兑换状态
+     */
+    private String status;
 
     /**
      * 兑换码过期时间

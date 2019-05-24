@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @描述：
  * @date 2019/5/17
  */
-@RequestMapping("/userPhoto")
+
 @RestController
 public class UserPhotoController {
 
@@ -29,7 +29,7 @@ public class UserPhotoController {
         return new ResultBean<>();
     }
 
-    @PostMapping("/getUserPhotosByUserId")
+    @GetMapping("/getUserPhotosByUserId")
     public ResultBean getUserPhotos(UserPhotoDTO userPhotoDTO) {
         userPhotoService.getUserPhoto(userPhotoDTO);
         return new ResultBean<>();

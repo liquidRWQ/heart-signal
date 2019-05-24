@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2019/4/18
  */
 public interface UserService extends Cruder<UserDTO> {
-    int login(UserDTO userDTO) throws CheckedException;
+    UserDTO login(UserDTO userDTO) throws CheckedException;
 
     void setPhoneNumber(UserDTO userDTO, PhoneCodeDTO phoneCodeDTO);
 

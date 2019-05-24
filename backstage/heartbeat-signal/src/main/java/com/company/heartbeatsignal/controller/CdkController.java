@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
  * @描述：
  * @date 2019/5/8
  */
-@RequestMapping("/cdk")
 @RestController
 public class CdkController {
 
@@ -51,7 +50,7 @@ public class CdkController {
 
     @DeleteMapping("/convertCdk")
     public ResultBean convertCdk(CdkDTO cdkDTO) {
-        cdkService.deleteByPrimary(cdkDTO);
+        cdkService.convertCdk(cdkDTO);
         return new ResultBean<>();
     }
 }
