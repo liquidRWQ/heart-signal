@@ -37,6 +37,8 @@ public class PhoneCodeUtils {
 
     private static final String TEMPLATE_CODE = "SMS_165414753";
 
+    private static final long EXPIRED = 2*60*1000;
+
     static {
         // 设置超时时间-可自行调整
         System.setProperty("sun.net.client.defaultConnectTimeout", "60000");
@@ -74,7 +76,7 @@ public class PhoneCodeUtils {
 
         if (sendSmsResponse.getCode() != null && "OK".equals(sendSmsResponse.getCode())) {
             phoneCodeDTO.setCode(code);
-            phoneCodeDTO.setTimeStamp(TimeUtils.getCurrentTimeMills());
+            phoneCodeDTO.setTimeStamp(TimeUtils.getCurrentTimeMills()+EXPIRED);
         } else {
             throw new UnCheckedException("发送手机验证码失败 code: " + sendSmsResponse.getCode());
         }

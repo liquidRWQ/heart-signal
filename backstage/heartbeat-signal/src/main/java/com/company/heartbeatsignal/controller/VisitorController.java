@@ -1,7 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.VisitorDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,42 +22,42 @@ public class VisitorController  {
     private VisitorService visitorService;
 
     @GetMapping("/getVisitor")
-    public ResultBean getOne(VisitorDTO visitorDTO) {
+    public ResultVO getOne(VisitorDTO visitorDTO) {
 
-        return new ResultBean<VisitorDTO>(visitorService.selectByPrimary(visitorDTO));
+        return new ResultVO<VisitorDTO>(visitorService.selectByPrimary(visitorDTO));
     }
 
     @GetMapping("/getVisitors")
-    public ResultBean getAll() {
-        return new ResultBean<List<VisitorDTO>>(visitorService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<List<VisitorDTO>>(visitorService.selectAll());
     }
 
     @PostMapping("/addVisitor")
-    public ResultBean addOne(VisitorDTO visitorDTO) throws Exception {
+    public ResultVO addOne(VisitorDTO visitorDTO) throws Exception {
         visitorService.insert(visitorDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @PutMapping("/updateVisitor")
-    public ResultBean updateOne(VisitorDTO visitorDTO) {
+    public ResultVO updateOne(VisitorDTO visitorDTO) {
         visitorService.updateByPrimary(visitorDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @DeleteMapping("/deleteVisitor")
-    public ResultBean deleteOne(VisitorDTO visitorDTO) {
+    public ResultVO deleteOne(VisitorDTO visitorDTO) {
         visitorService.deleteByPrimary(visitorDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @GetMapping("/getVisitorByUserId")
-    public ResultBean getVisitorByUserId(VisitorDTO visitorDTO) {
+    public ResultVO getVisitorByUserId(VisitorDTO visitorDTO) {
 
-        return new ResultBean<>(visitorService.selectByUserId(visitorDTO));
+        return new ResultVO<>(visitorService.selectByUserId(visitorDTO));
     }
 
     @GetMapping("/getVisitorByVisitorUserId")
-    public ResultBean getVisitorByVisitorUserId(VisitorDTO visitorDTO) {
-        return new ResultBean<>(visitorService.selectByVisitorUserId(visitorDTO));
+    public ResultVO getVisitorByVisitorUserId(VisitorDTO visitorDTO) {
+        return new ResultVO<>(visitorService.selectByVisitorUserId(visitorDTO));
     }
 }

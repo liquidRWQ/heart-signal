@@ -11,7 +11,6 @@ import tk.mybatis.mapper.common.Mapper;
  * @date 2019/5/8
  */
 @CacheNamespace
-@org.apache.ibatis.annotations.Mapper
 @Repository()
 public interface AttentionMapper extends Mapper<Attention> {
 }

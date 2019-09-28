@@ -1,7 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.AnonymousLetterDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.AnonymousLetterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,41 +19,41 @@ public class AnonymousLetterController  {
     private AnonymousLetterService anonymousLetterService;
 
     @GetMapping("/getAnonymousLetter")
-    public ResultBean getOne(AnonymousLetterDTO anonymousLetterDTO) {
-        return new ResultBean<>(anonymousLetterService.selectByPrimary(anonymousLetterDTO));
+    public ResultVO getOne(AnonymousLetterDTO anonymousLetterDTO) {
+        return new ResultVO<>(anonymousLetterService.selectByPrimary(anonymousLetterDTO));
     }
 
     @GetMapping("/getAnonymousLetters")
-    public ResultBean getAll() {
-        return new ResultBean<>(anonymousLetterService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<>(anonymousLetterService.selectAll());
     }
 
     @PostMapping("/addAnonymousLetter")
-    public ResultBean addOne(AnonymousLetterDTO anonymousLetterDTO) throws Exception {
+    public ResultVO addOne(AnonymousLetterDTO anonymousLetterDTO) throws Exception {
         anonymousLetterService.insert(anonymousLetterDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @PutMapping("/updateAnonymousLetter")
-    public ResultBean updateOne(AnonymousLetterDTO anonymousLetterDTO) {
+    public ResultVO updateOne(AnonymousLetterDTO anonymousLetterDTO) {
         anonymousLetterService.updateByPrimary(anonymousLetterDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @DeleteMapping("/deleteAnonymousLetter")
-    public ResultBean deleteOne(AnonymousLetterDTO anonymousLetterDTO) {
+    public ResultVO deleteOne(AnonymousLetterDTO anonymousLetterDTO) {
         anonymousLetterService.deleteByPrimary(anonymousLetterDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @GetMapping("/getAnonymousLetterBySenderId")
-    public ResultBean getAnonymousLetterBySenderId(AnonymousLetterDTO anonymousLetterDTO) {
-        return new ResultBean<>(anonymousLetterService.selectBySenderId(anonymousLetterDTO));
+    public ResultVO getAnonymousLetterBySenderId(AnonymousLetterDTO anonymousLetterDTO) {
+        return new ResultVO<>(anonymousLetterService.selectBySenderId(anonymousLetterDTO));
     }
 
     @GetMapping("/getAnonymousLetterByReceiverId")
-    public ResultBean getAnonymousLetterByReceiverId(AnonymousLetterDTO anonymousLetterDTO) {
-        return new ResultBean<>(anonymousLetterService.selectByReceiverId(anonymousLetterDTO));
+    public ResultVO getAnonymousLetterByReceiverId(AnonymousLetterDTO anonymousLetterDTO) {
+        return new ResultVO<>(anonymousLetterService.selectByReceiverId(anonymousLetterDTO));
     }
 
 }

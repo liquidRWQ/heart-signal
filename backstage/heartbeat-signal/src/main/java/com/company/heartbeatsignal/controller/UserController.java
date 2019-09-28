@@ -3,7 +3,7 @@ package com.company.heartbeatsignal.controller;
 import com.company.heartbeatsignal.dto.entity.UserDTO;
 import com.company.heartbeatsignal.dto.other.PageDTO;
 import com.company.heartbeatsignal.dto.other.PhoneCodeDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.UserService;
 import com.company.heartbeatsignal.util.PhoneCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,67 +19,69 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class UserController  {
+public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("login")
-    public ResultBean login(@Validated UserDTO userDTO, BindingResult bindingResult) throws Exception {
-        return new ResultBean<>(userService.login(userDTO));
+    @PostMapping("/login")
+    public ResultVO login(@Validated UserDTO userDTO, BindingResult bindingResult) throws Exception {
+
+        return new ResultVO<>(userService.login(userDTO));
     }
 
     @GetMapping("/sendCode")
-    public ResultBean sendCode(PhoneCodeDTO phoneCodeDTO) throws Exception {
+    public ResultVO sendCode(PhoneCodeDTO phoneCodeDTO) throws Exception {
         PhoneCodeUtils.sendCode(phoneCodeDTO);
-        return new ResultBean<PhoneCodeDTO>(phoneCodeDTO);
+        return new ResultVO<PhoneCodeDTO>(phoneCodeDTO);
     }
 
     @PostMapping("/addPhoneNumber")
-    public ResultBean setPhoneNumber(UserDTO userDTO,PhoneCodeDTO phoneCodeDTO) throws Exception {
-        userService.setPhoneNumber(userDTO,phoneCodeDTO);
-        return new ResultBean<>();
+    public ResultVO setPhoneNumber(UserDTO userDTO, PhoneCodeDTO phoneCodeDTO) throws Exception {
+        userService.setPhoneNumber(userDTO, phoneCodeDTO);
+        return new ResultVO<>();
     }
 
-    @PostMapping("/idCardVerified")
-    public ResultBean idCardVerified(UserDTO userDTO) throws Exception {
-        return new ResultBean<>();
+    @PostMapping("/phoneVerified")
+    public ResultVO idCardVerified(UserDTO userDTO, PhoneCodeDTO phoneCodeDTO) throws Exception {
+        userService.setPhoneNumber(userDTO, phoneCodeDTO);
+        return new ResultVO<>();
     }
 
     @GetMapping("/getUsersByUserIdList")
-    public ResultBean getUsersByUserIdList(UserDTO userDTO) throws Exception {
-        return new ResultBean<>(userService.selectByUserIdList(userDTO));
+    public ResultVO getUsersByUserIdList(UserDTO userDTO) throws Exception {
+        return new ResultVO<>(userService.selectByUserIdList(userDTO));
     }
 
     @GetMapping("/getUser")
-    public ResultBean getOne(UserDTO userDTO) {
-        return new ResultBean<>(userService.selectByPrimary(userDTO));
+    public ResultVO getOne(UserDTO userDTO) {
+        return new ResultVO<>(userService.selectByPrimary(userDTO));
     }
 
     @GetMapping("/getUsers")
-    public ResultBean getAll() {
-        return new ResultBean<>(userService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<>(userService.selectAll());
     }
 
     @PostMapping("/addUser")
-    public ResultBean addOne(UserDTO userDTO) throws Exception {
+    public ResultVO addOne(UserDTO userDTO) throws Exception {
         userService.insert(userDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @PutMapping("/updateUser")
-    public ResultBean updateOne(UserDTO userDTO) {
+    public ResultVO updateOne(UserDTO userDTO) {
         userService.updateByPrimary(userDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
-    public ResultBean deleteOne(UserDTO userDTO) {
+    public ResultVO deleteOne(UserDTO userDTO) {
         userService.deleteByPrimary(userDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @GetMapping("/getUsersInIndex")
-    public ResultBean getUsersInIndex(PageDTO pageDTO) {
-        return new ResultBean<>(userService.selectInIndex(pageDTO));
+    public ResultVO getUsersInIndex(PageDTO pageDTO) {
+        return new ResultVO<>(userService.selectInIndex(pageDTO));
     }
 
 }

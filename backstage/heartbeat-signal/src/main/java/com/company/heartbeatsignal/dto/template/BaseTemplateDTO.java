@@ -11,6 +11,18 @@ import lombok.Data;
 @Data
 public class BaseTemplateDTO {
 
+    String first;
+
+    String second;
+
+    String third;
+
+    String fourth;
+
+    String fifth;
+
+    String six;
+
     String params;
 
 }

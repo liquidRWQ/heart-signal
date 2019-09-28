@@ -78,7 +78,7 @@ public class FileUpLoadUtils {
         String trueFileName = fileDTO.getFileName();
         String originalFilename = multipartFile.getOriginalFilename();
         String fileType = StringUtils.substringAfterLast(originalFilename, ".");
-        if (FileType.IMAGE.value().contains(fileType)) {
+        if (FileType.IMAGE.value().contains(fileType.toUpperCase())) {
             // 自定义的文件名称
             // 设置存放文件的路径
             String path;
@@ -101,9 +101,11 @@ public class FileUpLoadUtils {
             } catch (IOException e) {
                 throw new UnCheckedException("上传文件异常: " + e.toString());
             }
+            fileDTO.setPath(serverPath);
         } else {
             throw new UserException("不是我们想要的文件类型,请按要求重新上传");
         }
+
     }
 
     public static void deleteFile(FileDTO fileDTO) {

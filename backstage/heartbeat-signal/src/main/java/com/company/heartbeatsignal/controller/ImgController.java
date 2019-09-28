@@ -1,6 +1,6 @@
 package com.company.heartbeatsignal.controller;
 
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.ImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,20 +33,20 @@ public class ImgController {
      * @date 2019/5/15
      */
     @PostMapping("/uploadOne")
-    public ResultBean uploadOne(HttpServletRequest httpServletRequest, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+    public ResultVO uploadOne(HttpServletRequest httpServletRequest, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 
-        String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        String realPath ="/usr/heart/";
         String serverPath = imgService.uploadOneImg(realPath, file);
-        return new ResultBean<String>(serverPath);
+        return new ResultVO<String>(serverPath);
 
     }
 
     @PostMapping("/uploadMany")
-    public ResultBean uploadMany(HttpServletRequest httpServletRequest, @RequestParam(value = "files", required = false) MultipartFile[] files) throws Exception {
+    public ResultVO uploadMany(HttpServletRequest httpServletRequest, @RequestParam(value = "files", required = false) MultipartFile[] files) throws Exception {
 
-        String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        String realPath ="/usr/heart/";
         List<String> serverPath = imgService.uploadManyImgs(realPath, files);
-        return new ResultBean<List<String>>(serverPath);
+        return new ResultVO<List<String>>(serverPath);
 
     }
 
@@ -59,11 +59,11 @@ public class ImgController {
      * @date 2019/5/15
      */
     @PostMapping("/downLoad")
-    public ResultBean downLoad(HttpServletRequest httpServletRequest, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+    public ResultVO downLoad(HttpServletRequest httpServletRequest, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 
         String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/");
         String serverPath = null;
-        return new ResultBean<String>(serverPath);
+        return new ResultVO<String>(serverPath);
 
     }
 

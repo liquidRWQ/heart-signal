@@ -1,7 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.UserBaseInfoDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.UserBaseInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,34 +19,34 @@ public class UserBaseInfoController {
     private UserBaseInfoService userBaseInfoService;
 
     @GetMapping("/getUserBaseInfo")
-    public ResultBean getOne(UserBaseInfoDTO userBaseInfoDTO) {
-        return new ResultBean<>(userBaseInfoService.selectByPrimary(userBaseInfoDTO));
+    public ResultVO getOne(UserBaseInfoDTO userBaseInfoDTO) {
+        return new ResultVO<>(userBaseInfoService.selectByPrimary(userBaseInfoDTO));
     }
 
     @GetMapping("getUserBaseInfos")
-    public ResultBean getAll() {
-        return new ResultBean<>(userBaseInfoService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<>(userBaseInfoService.selectAll());
     }
 
     @PostMapping("/addUserBaseInfo")
-    public ResultBean addOne(UserBaseInfoDTO userBaseInfoDTO) throws Exception {
+    public ResultVO addOne(UserBaseInfoDTO userBaseInfoDTO) throws Exception {
         userBaseInfoService.insert(userBaseInfoDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @PutMapping("/updateUserBaseInfo")
-    public ResultBean updateOne(UserBaseInfoDTO userBaseInfoDTO) {
+    public ResultVO updateOne(UserBaseInfoDTO userBaseInfoDTO) {
         userBaseInfoService.updateByPrimary(userBaseInfoDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
-    public ResultBean deleteOne(UserBaseInfoDTO userBaseInfoDTO) {
+    public ResultVO deleteOne(UserBaseInfoDTO userBaseInfoDTO) {
         userBaseInfoService.deleteByPrimary(userBaseInfoDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @GetMapping("/getUserBaseInfoByUserId")
-    public ResultBean getUserBaseInfoByUserId(UserBaseInfoDTO userBaseInfoDTO) {
-        return new ResultBean<>(userBaseInfoService.selectByUserId(userBaseInfoDTO));
+    public ResultVO getUserBaseInfoByUserId(UserBaseInfoDTO userBaseInfoDTO) {
+        return new ResultVO<>(userBaseInfoService.selectByUserId(userBaseInfoDTO));
     }
 }

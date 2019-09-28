@@ -12,4 +12,16 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class EpsTemplateDTO extends  BaseTemplateDTO {
+
+    String first;
+
+    String second;
+
+    String third;
+
+    String fourth;
+
+    String fifth;
+
+    String six;
 }

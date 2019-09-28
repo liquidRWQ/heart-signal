@@ -25,7 +25,7 @@ import java.util.List;
 @Slf4j
 public class BindingResultAop {
 
-    @Pointcut("execution(public com.company.heartbeatsignal.result.ResultBean *(..))")
+    @Pointcut("execution(public com.company.heartbeatsignal.vo.ResultVO *(..))")
     public void resultBean() {
     }
 

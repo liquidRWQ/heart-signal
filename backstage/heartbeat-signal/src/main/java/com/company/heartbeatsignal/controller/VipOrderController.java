@@ -1,7 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.VipOrderDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.VipOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,27 +20,27 @@ public class VipOrderController  {
     private VipOrderService vipOrderService;
 
     @GetMapping("/getVipOrder")
-    public ResultBean getOne(VipOrderDTO vipOrderDTO) {
-        return new ResultBean<>(vipOrderService.selectByPrimary(vipOrderDTO));
+    public ResultVO getOne(VipOrderDTO vipOrderDTO) {
+        return new ResultVO<>(vipOrderService.selectByPrimary(vipOrderDTO));
     }
     @GetMapping("/getVipOrders")
-    public ResultBean getAll() {
-        return new ResultBean<>(vipOrderService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<>(vipOrderService.selectAll());
     }
     @PostMapping("/addOrder")
-    public ResultBean addOne(VipOrderDTO vipOrderDTO) throws Exception {
+    public ResultVO addOne(VipOrderDTO vipOrderDTO) throws Exception {
         vipOrderService.insert(vipOrderDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
     @PutMapping("/updateOrder")
-    public ResultBean updateOne(VipOrderDTO vipOrderDTO) {
+    public ResultVO updateOne(VipOrderDTO vipOrderDTO) {
         vipOrderService.updateByPrimary(vipOrderDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @DeleteMapping("/deleteOrder")
-    public ResultBean deleteOne(VipOrderDTO vipOrderDTO) {
+    public ResultVO deleteOne(VipOrderDTO vipOrderDTO) {
         vipOrderService.deleteByPrimary(vipOrderDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 }

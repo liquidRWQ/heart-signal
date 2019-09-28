@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date 2019/4/14
  */
 @Component("templatorContext")
-public class TemplatorContext {
+public class TemplatorContext<T> {
 
     @Autowired
     private SendTemplatorFactory sendTemplatorFactory;

@@ -46,7 +46,7 @@
 
   <select id="selectInIndex" resultMap="DTOMap">
      select a.id,a.user_avatar_url,a.real_name,a.user_nickname,b.gender,b.age,b.height,b.real_name FROM user  as a
-          LEFT JOIN user_base_info as b ON a.id=b.user_id
+          LEFT JOIN heartbeat_user_base_info as b ON a.id=b.user_id
   </select>
 
 

@@ -8,6 +8,7 @@ import com.company.heartbeatsignal.entity.User;
 import com.company.heartbeatsignal.exception.CheckedException;
 import com.company.heartbeatsignal.exception.UserException;
 import com.company.heartbeatsignal.service.UserService;
+import com.company.heartbeatsignal.util.Base64Utils;
 import com.company.heartbeatsignal.util.CodeUtils;
 import com.company.heartbeatsignal.util.TimeUtils;
 import com.github.pagehelper.PageHelper;
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
         CodeUtils.getUserOpenIdByWeChatLoginDTO(userDTO);
         Integer userId = userMapper.selectUserId(userDTO.getUserOpenid());
         if (userId == null) {
+            userDTO.setUserNickname(Base64Utils.stringEncodeToBase64String(userDTO.getUserNickname()));
             User user = userDTO.convertToUser();
             user.setAllTime();
             userMapper.insert(user);
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void setPhoneNumber(UserDTO userDTO, PhoneCodeDTO phoneCodeDTO) {
-        if (TimeUtils.getCurrentTimeMills() > phoneCodeDTO.getTimeStamp() + (long) (300 * 1000)) {
+        if (TimeUtils.getCurrentTimeMills() > phoneCodeDTO.getTimeStamp()) {
             throw new UserException("验证码过期");
         } else {
             userMapper.updateByPrimaryKeySelective(userDTO.convertToUser());

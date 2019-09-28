@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2019/5/17
  */
 public interface UserPhotoService extends Cruder<UserPhotoDTO>{
-    void insertUserPhoto(UserPhotoDTO userPhotoDTO, String realPath, MultipartFile[] files);
+    void insertUserPhoto(UserPhotoDTO userPhotoDTO, String realPath, MultipartFile file);
 
 
 

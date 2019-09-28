@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019/5/8
  */
 @Service("userBaseInfoServiceImpl")
-public class  UserBaseInfoServiceImpl implements UserBaseInfoService {
+public class UserBaseInfoServiceImpl implements UserBaseInfoService {
 
     @Autowired
     private UserBaseInfoMapper userBaseInfoMapper;
@@ -59,6 +59,10 @@ public class  UserBaseInfoServiceImpl implements UserBaseInfoService {
 
     @Override
     public UserBaseInfoDTO selectByUserId(UserBaseInfoDTO userBaseInfoDTO) {
-        return new UserBaseInfoDTO().convertToUserBaseInfoDTO(userBaseInfoMapper.selectOne(userBaseInfoDTO.convertToUserBaseInfo()));
+        UserBaseInfo userBaseInfo = userBaseInfoMapper.selectOne(userBaseInfoDTO.convertToUserBaseInfo());
+        if (userBaseInfo == null) {
+            return null;
+        }
+        return new UserBaseInfoDTO().convertToUserBaseInfoDTO(userBaseInfo);
     }
 }

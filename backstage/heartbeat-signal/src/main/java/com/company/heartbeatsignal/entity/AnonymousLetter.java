@@ -13,7 +13,7 @@ import java.util.Date;
  * @date 2019/5/8
  */
 @Data
-@Table(name = "anonymous_letter")
+@Table(name = "heartbeat_anonymous_letter")
 public class AnonymousLetter implements Serializable, TimeSet {
     private static final long serialVersionUID = 8378273110029329571L;
     /**

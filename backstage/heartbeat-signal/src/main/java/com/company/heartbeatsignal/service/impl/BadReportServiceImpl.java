@@ -1,11 +1,15 @@
 package com.company.heartbeatsignal.service.impl;
 
+import com.company.heartbeatsignal.context.template.TemplatorContext;
 import com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.BadReportMapper;
 import com.company.heartbeatsignal.dto.entity.BadReportDTO;
 import com.company.heartbeatsignal.dto.other.FilesDTO;
+import com.company.heartbeatsignal.dto.template.BaseTemplateDTO;
 import com.company.heartbeatsignal.entity.BadReport;
 import com.company.heartbeatsignal.service.BadReportService;
+import com.company.heartbeatsignal.task.ThreadPool;
 import com.company.heartbeatsignal.util.FileUpLoadUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,19 +23,40 @@ import java.util.List;
  * @描述：
  * @date 2019/5/8
  */
+@Slf4j
 @Service("badReportServiceImpl")
 public class BadReportServiceImpl implements BadReportService {
 
     private static final String FOLDER_NAME = "bad_report";
 
     @Autowired
+    private TemplatorContext templatorContext;
+
+    @Autowired
     private BadReportMapper badReportMapper;
 
+    @Autowired
+    private ThreadPool threadPool;
+
     @Override
-    public void insert(BadReportDTO badReportDTO) {
+    public void insert(BadReportDTO badReportDTO) throws Exception {
+        threadPool.getSingleThreadPool().execute(() -> {
+            BaseTemplateDTO baseTemplateDTO = new BaseTemplateDTO();
+            baseTemplateDTO.setFirst(badReportDTO.getUserId().toString());
+            baseTemplateDTO.setSecond(badReportDTO.getReportReason());
+            baseTemplateDTO.setThird(badReportDTO.getImgPath());
+            try {
+                templatorContext.sendTemplate(baseTemplateDTO, "EpsFeedbackSend");
+            } catch (Exception e) {
+                log.error("发生异步线程异常: " + e.toString() + "该线程：" + Thread.currentThread().getName());
+            }
+        });
         BadReport badReport = badReportDTO.convertToBadReport();
         badReport.setAllTime();
         badReportMapper.insert(badReport);
+
+
+
     }
 
     @Override

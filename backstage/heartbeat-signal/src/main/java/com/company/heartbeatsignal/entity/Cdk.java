@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 @Data
-@Table(name = "cdk")
+@Table(name = "heartbeat_cdk")
 public class Cdk implements Serializable,TimeSet {
     private static final long serialVersionUID = -4417301447381358639L;
     /**

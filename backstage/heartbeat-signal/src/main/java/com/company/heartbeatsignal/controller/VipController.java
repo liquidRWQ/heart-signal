@@ -1,7 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.VipDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.VipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,37 +20,37 @@ public class VipController {
     private VipService vipService;
 
     @GetMapping("/getVip")
-    public ResultBean getOne(VipDTO vipDTO) {
-        return new ResultBean<>(vipService.selectByPrimary(vipDTO));
+    public ResultVO getOne(VipDTO vipDTO) {
+        return new ResultVO<>(vipService.selectByPrimary(vipDTO));
     }
 
     @GetMapping("/getVips")
-    public ResultBean getAll() {
-        return new ResultBean<>(vipService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<>(vipService.selectAll());
     }
 
     @PostMapping("/addVip")
-    public ResultBean addOne(VipDTO vipDTO) throws Exception {
+    public ResultVO addOne(VipDTO vipDTO) throws Exception {
         vipService.insert(vipDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
 
 
     @PutMapping("/updateVip")
-    public ResultBean updateOne(VipDTO vipDTO) {
+    public ResultVO updateOne(VipDTO vipDTO) {
         vipService.updateByPrimary(vipDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @DeleteMapping("/deleteVip")
-    public ResultBean deleteOne(VipDTO vipDTO) {
+    public ResultVO deleteOne(VipDTO vipDTO) {
         vipService.deleteByPrimary(vipDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @GetMapping("/getVipByUserId")
-    public ResultBean getVipByUserId(VipDTO vipDTO) {
-        return new ResultBean<>(vipService.selectByUserId(vipDTO));
+    public ResultVO getVipByUserId(VipDTO vipDTO) {
+        return new ResultVO<>(vipService.selectByUserId(vipDTO));
     }
 }

@@ -15,6 +15,6 @@
 
 
   <select id="selectFirstUserPhoto" resultType="java.lang.String">
-    SELECT photo_name FROM user_photo WHERE user_id=#{id} LIMIT 1
+    SELECT photo_path FROM heartbeat_user_photo WHERE user_id=#{id} LIMIT 1
   </select>
 </mapper>

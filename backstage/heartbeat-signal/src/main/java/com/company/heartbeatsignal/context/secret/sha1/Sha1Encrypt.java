@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  * @描述：
  * @date 2019/4/14
  */
-@Component("sha1Encrypt")
+@Component("sha1")
 public class Sha1Encrypt implements IrreversibleEncryptible {
 
     private static HashFunction hashFunction = Hashing.sha1();

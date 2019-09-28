@@ -8,4 +8,6 @@ package com.company.heartbeatsignal.context.ramdomid;
  */
 public interface StringRandomizer {
     String getRandom();
+
+    String getRandomStringWithBit(int bit);
 }

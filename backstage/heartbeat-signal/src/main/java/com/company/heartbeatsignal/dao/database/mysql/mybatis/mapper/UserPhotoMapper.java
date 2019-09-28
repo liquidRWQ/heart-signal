@@ -12,7 +12,6 @@ import tk.mybatis.mapper.common.Mapper;
  */
 
 @CacheNamespace
-@org.apache.ibatis.annotations.Mapper
 @Repository
 public interface UserPhotoMapper extends Mapper<UserPhoto> {
 

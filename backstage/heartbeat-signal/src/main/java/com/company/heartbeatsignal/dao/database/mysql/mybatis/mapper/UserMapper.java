@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 @CacheNamespace
-@org.apache.ibatis.annotations.Mapper
 @Repository
 public interface UserMapper extends Mapper<User> {
 

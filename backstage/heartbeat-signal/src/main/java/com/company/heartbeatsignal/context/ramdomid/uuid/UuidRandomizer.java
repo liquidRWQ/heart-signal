@@ -15,18 +15,6 @@ import java.util.UUID;
 @Component("uuid")
 public class UuidRandomizer implements StringRandomizer {
 
-    private UuidRandomizer() {
-
-    }
-
-    private static class Uuid {
-        private static UuidRandomizer singleton = new UuidRandomizer();
-    }
-
-    public static UuidRandomizer getInstance() {
-        return UuidRandomizer.Uuid.singleton;
-    }
-
     /**
      * @param
      * @return java.lang.String 时间的字符串
@@ -38,5 +26,18 @@ public class UuidRandomizer implements StringRandomizer {
     @Override
     public String getRandom() {
         return UUID.randomUUID().toString().replace("-", "") + Calendar.getInstance().getTimeInMillis();
+    }
+
+    @Override
+    public String getRandomStringWithBit(int bit) {
+        StringBuilder id = new StringBuilder(getRandomUUID());
+        while (id.length()<bit){
+            id.append(getRandomUUID());
+        }
+        return id.substring(0, bit);
+    }
+
+    private String getRandomUUID(){
+        return  UUID.randomUUID().toString().trim().replaceAll("-", "");
     }
 }

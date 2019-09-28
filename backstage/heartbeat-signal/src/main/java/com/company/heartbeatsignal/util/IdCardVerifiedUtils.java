@@ -29,7 +29,7 @@ public class IdCardVerifiedUtils {
 
         String params = "idcard=" + idCardDTO.getIdCard() + "&name=" + idCardDTO.getRealName();
 
-        String response = HttpRequestUtils.sendGetWithStringParams(URL, params, headers);
+        String response = HttpUrlUtils.sendGetWithStringParams(URL, params, headers);
 
         JSONObject responseJson = JsonUtils.toJSONObject(response);
         if ("0".equals(responseJson.get("showapi_res_code").toString())) {

@@ -13,7 +13,7 @@ import java.util.Date;
  * @date 2019/5/8
  */
 @Data
-@Table(name = "visitor")
+@Table(name = "heartbeat_visitor")
 public class Visitor implements Serializable,TimeSet {
     private static final long serialVersionUID = -7700815285592321849L;
     /**

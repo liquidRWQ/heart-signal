@@ -28,6 +28,11 @@ public class HeartAppConfig {
 
     public static int managerCount;
 
+ /*   public static final String APP_ID = "wx1dad82132dab2758";
+
+    public static final String SECRET = "cdd158625121b2c726b039bd04e9442d";
+*/
+
     public static final String APP_ID = "wx2e7304608fad59e6";
 
     public static final String SECRET = "a252d489ba3c249c73dc4a7b947bd64e";

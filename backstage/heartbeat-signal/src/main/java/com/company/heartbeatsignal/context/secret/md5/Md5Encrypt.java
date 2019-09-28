@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  * @描述：
  * @date 2019/4/14
  */
-@Component("md5Encrypt")
+@Component("md5")
 public class Md5Encrypt implements IrreversibleEncryptible {
 
     /**

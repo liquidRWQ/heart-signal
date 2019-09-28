@@ -1,7 +1,7 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.CdkDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.CdkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,37 +20,37 @@ public class CdkController {
 
 
     @GetMapping("/getCdk")
-    public ResultBean getOne(CdkDTO cdkDTO) {
+    public ResultVO getOne(CdkDTO cdkDTO) {
 
-        return new ResultBean<>(cdkService.selectByPrimary(cdkDTO));
+        return new ResultVO<>(cdkService.selectByPrimary(cdkDTO));
     }
 
     @GetMapping("/getCdks")
-    public ResultBean getAll() {
-        return new ResultBean<>(cdkService.selectAll());
+    public ResultVO getAll() {
+        return new ResultVO<>(cdkService.selectAll());
     }
 
     @PostMapping("/addCdk")
-    public ResultBean addOne(CdkDTO cdkDTO) throws Exception {
+    public ResultVO addOne(CdkDTO cdkDTO) throws Exception {
         cdkService.insert(cdkDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @PutMapping("/updateCdk")
-    public ResultBean updateOne(CdkDTO cdkDTO) {
+    public ResultVO updateOne(CdkDTO cdkDTO) {
         cdkService.updateByPrimary(cdkDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @DeleteMapping("/deleteCdk")
-    public ResultBean deleteOne(CdkDTO cdkDTO) {
+    public ResultVO deleteOne(CdkDTO cdkDTO) {
         cdkService.deleteByPrimary(cdkDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 
     @DeleteMapping("/convertCdk")
-    public ResultBean convertCdk(CdkDTO cdkDTO) {
+    public ResultVO convertCdk(CdkDTO cdkDTO) {
         cdkService.convertCdk(cdkDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 }

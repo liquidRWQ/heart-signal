@@ -1,13 +1,12 @@
 package com.company.heartbeatsignal.controller;
 
 import com.company.heartbeatsignal.dto.entity.UserPhotoDTO;
-import com.company.heartbeatsignal.result.ResultBean;
+import com.company.heartbeatsignal.vo.ResultVO;
 import com.company.heartbeatsignal.service.UserPhotoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Liquid
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @描述：
  * @date 2019/5/17
  */
-
+@Slf4j
 @RestController
 public class UserPhotoController {
 
@@ -23,41 +22,36 @@ public class UserPhotoController {
     private UserPhotoService userPhotoService;
 
     @PostMapping("/setUserPhoto")
-    public ResultBean setUserPhoto(UserPhotoDTO userPhotoDTO, @RequestParam("files") MultipartFile[] files, HttpServletRequest httpServletRequest) {
-        String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/");
-        userPhotoService.insertUserPhoto(userPhotoDTO, realPath, files);
-        return new ResultBean<>();
+    public ResultVO setUserPhoto(UserPhotoDTO userPhotoDTO, @RequestParam("file") MultipartFile file) {
+        String realPath ="/usr/heart/";
+        userPhotoService.insertUserPhoto(userPhotoDTO, realPath, file);
+        return new ResultVO<>();
     }
 
     @GetMapping("/getUserPhotosByUserId")
-    public ResultBean getUserPhotos(UserPhotoDTO userPhotoDTO) {
-        userPhotoService.getUserPhoto(userPhotoDTO);
-        return new ResultBean<>();
+    public ResultVO getUserPhotosByUserId(UserPhotoDTO userPhotoDTO) {
+        return new ResultVO<>(userPhotoService.getUserPhoto(userPhotoDTO));
     }
 
-
-    public ResultBean getOne(UserPhotoDTO userPhotoDTO) {
+    public ResultVO getOne(UserPhotoDTO userPhotoDTO) {
         return null;
     }
 
-
-    public ResultBean getAll() {
+    public ResultVO getAll() {
         return null;
     }
 
-
-    public ResultBean addOne(UserPhotoDTO userPhotoDTO) {
+    public ResultVO addOne(UserPhotoDTO userPhotoDTO) {
         return null;
     }
 
-
-    public ResultBean updateOne(UserPhotoDTO userPhotoDTO) {
+    public ResultVO updateOne(UserPhotoDTO userPhotoDTO) {
         return null;
     }
 
     @DeleteMapping("/deleteUserPhoto")
-    public ResultBean deleteOne(UserPhotoDTO userPhotoDTO) {
+    public ResultVO deleteOne(UserPhotoDTO userPhotoDTO) {
         userPhotoService.deleteByPrimary(userPhotoDTO);
-        return new ResultBean<>();
+        return new ResultVO<>();
     }
 }

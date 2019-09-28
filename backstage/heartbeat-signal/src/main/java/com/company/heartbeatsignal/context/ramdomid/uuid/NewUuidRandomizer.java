@@ -1,6 +1,7 @@
 package com.company.heartbeatsignal.context.ramdomid.uuid;
 
 import com.company.heartbeatsignal.context.ramdomid.StringRandomizer;
+import com.company.heartbeatsignal.util.TimeUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -25,5 +26,18 @@ public class NewUuidRandomizer implements StringRandomizer {
     @Override
     public String getRandom() {
         return UUID.randomUUID().toString();
+    }
+
+    @Override
+    public String getRandomStringWithBit(int bit) {
+        StringBuilder id = new StringBuilder(getRandomUUID());
+        while (id.length() < bit) {
+            id.append(getRandomUUID());
+        }
+        return id.substring(0, bit);
+    }
+
+    private String getRandomUUID() {
+        return UUID.randomUUID().toString() + TimeUtils.getCurrentTimeMills();
     }
 }

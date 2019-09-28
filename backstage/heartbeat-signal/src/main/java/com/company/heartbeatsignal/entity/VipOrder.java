@@ -16,7 +16,7 @@ import java.util.Date;
  * @date 2019/5/17
  */
 @Data
-@Table(name = "vip_order")
+@Table(name = "heartbeat_vip_order")
 public class VipOrder implements Serializable, TimeSet, IdSet {
     private static final long serialVersionUID = -2717252352607668344L;
     /**

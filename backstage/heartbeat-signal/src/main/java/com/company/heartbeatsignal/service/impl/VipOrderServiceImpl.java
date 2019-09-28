@@ -3,10 +3,10 @@ package com.company.heartbeatsignal.service.impl;
 import com.company.heartbeatsignal.context.template.TemplatorContext;
 import com.company.heartbeatsignal.dao.database.mysql.mybatis.mapper.VipOrderMapper;
 import com.company.heartbeatsignal.dto.entity.VipOrderDTO;
+import com.company.heartbeatsignal.dto.template.BaseTemplateDTO;
 import com.company.heartbeatsignal.dto.template.WeChatTemplateDTO;
 import com.company.heartbeatsignal.entity.VipOrder;
 import com.company.heartbeatsignal.service.VipOrderService;
-import com.company.heartbeatsignal.util.TemplateParamsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,8 +36,8 @@ public class VipOrderServiceImpl implements VipOrderService {
         vipOrder.setAllTime();
         vipOrder.setRandomId();
         vipOrderMapper.insert(vipOrder);
-        String params = TemplateParamsUtils.getVipOrderJsonParams(vipOrderDTO);
-        WeChatTemplateDTO weChatTemplateDTO = new WeChatTemplateDTO();
+
+        BaseTemplateDTO weChatTemplateDTO = new WeChatTemplateDTO();
         templatorContext.sendTemplate(weChatTemplateDTO, "weChatOrderSend");
 
     }

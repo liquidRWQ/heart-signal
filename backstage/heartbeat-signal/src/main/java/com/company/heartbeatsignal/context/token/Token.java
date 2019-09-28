@@ -1,4 +1,4 @@
-package com.company.heartbeatsignal.dto.other;
+package com.company.heartbeatsignal.context.token;
 
 import lombok.Data;
 
@@ -14,5 +14,9 @@ import java.io.Serializable;
 public class Token implements Serializable {
     private static final long serialVersionUID = -7584568284948370500L;
 
+    private String tokenId;
+
     private String tokenName;
+
+    private Long  expired;
 }

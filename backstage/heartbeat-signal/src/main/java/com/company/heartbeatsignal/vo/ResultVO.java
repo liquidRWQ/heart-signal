@@ -1,4 +1,4 @@
-package com.company.heartbeatsignal.result;
+package com.company.heartbeatsignal.vo;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @date 2018/11/11
  */
 @Data
-public class ResultBean<T> implements Serializable {
+public class ResultVO<T> implements Serializable {
     private static final long serialVersionUID = -8362519075967287843L;
 
     public static final int SUCCESS = 0;
@@ -30,11 +30,11 @@ public class ResultBean<T> implements Serializable {
 
     private T data;
 
-    public ResultBean() {
+    public ResultVO() {
         super();
     }
 
-    public ResultBean(T data) {
+    public ResultVO(T data) {
         super();
         this.data = data;
     }

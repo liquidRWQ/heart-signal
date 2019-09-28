@@ -13,7 +13,7 @@ import java.util.Date;
  * @date 2019/5/8
  */
 @Data
-@Table(name = "label")
+@Table(name = "heartbeat_label")
 public class Label implements Serializable,TimeSet{
     private static final long serialVersionUID = 992708015309198290L;
     /**
