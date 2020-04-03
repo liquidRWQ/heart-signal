@@ -27,15 +27,15 @@ public class PhoneCodeUtils {
     /**
      * 短信API产品域名（接口地址固定，无需修改）
      */
-    private static final String DOMAIN = "dysmsapi.aliyuncs.com";
+    private static final String DOMAIN = "";
 
-    private static final String ACCESS_KEY_ID = "LTAIQLxVrJtHOWaY";
+    private static final String ACCESS_KEY_ID = "";
 
-    private static final String ACCESS_KEY_SECRET = "M0UrXr0aSPtPz3zzNHv92B403MHVdw";
+    private static final String ACCESS_KEY_SECRET = "";
 
     private static final String TEMPLATE_NAME = "心动信号";
 
-    private static final String TEMPLATE_CODE = "SMS_165414753";
+    private static final String TEMPLATE_CODE = "";
 
     private static final long EXPIRED = 2*60*1000;
 
